@@ -41,3 +41,11 @@ print("Porcentaje de similitud:", coeficiente_jaccard)
 correlacion = accidentes['FECHA_x'].corr(accidentes['FECHA_y'])
 porcentaje_similitud = abs(correlacion) * 100
 print("Porcentaje de similitud:", porcentaje_similitud)
+
+#eliminar columnas innecesarias
+accidentes = accidentes.drop('MODALIDAD', axis=1)
+accidentes = accidentes.drop('OBJETO_FIJO', axis=1)
+accidentes = accidentes.drop('FECHA_y', axis=1)
+accidentes = accidentes.drop('FECHA_z', axis=1)
+accidentes = accidentes.drop('FECHA_q', axis=1)
+accidentes = accidentes.drop('CLASE_y', axis=1)
