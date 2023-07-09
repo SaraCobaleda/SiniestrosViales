@@ -1,23 +1,44 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from .models import Project, Task
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render, redirect
+from .forms import CreateNewTask
 
 # Create your views here.
 def index(request):
-    return HttpResponse("<h1>index page</h1>")
+    title = "Aplicacion en django!!"
+    #return HttpResponse("<h1>index page</h1>")
+    return render(request, 'index.html', {'title': title})
 
 def holaMundo(request, username):
     print(username)
     return HttpResponse("<h1>Hola %s</h1>" % username)
 
 def hola(request):
-    return HttpResponse("<h2>holi</h2>")
+    creator = "ME!"
+    #return HttpResponse("<h2>holi</h2>")
+    return render(request, 'about.html', {'creator': creator})
 
 def projects(request):
-    project = list(Project.objects.values())
-    return JsonResponse(project, safe = False)
+    projects = list(Project.objects.values())
+    projects = Project.objects.all()
+    return render(request, 'projects.html', {
+        'projects': projects
+    })
 
-def task(request, name):
-    task = get_object_or_404(Project, name=name)
-    return HttpResponse("task: %s" % task.id)
+def task(request):
+    #task = get_object_or_404(Project, id=id)
+    #return HttpResponse("Project: %s" % task.name)
+    tasks = Task.objects.all()
+    return render(request, 'tasks.html', {
+        'tasks': tasks
+    })
+
+def createTask(request):
+    if request.method == 'GET':
+        return render(request, 'createTask.html', {
+            'form': CreateNewTask()
+        })
+    else:
+        Task.objects.create(title = request.POST['title'], description = request.POST['description'], project_id=2)
+        return redirect('/tasks/')

@@ -155,7 +155,7 @@ print(df['HORA'].value_counts())
 #EDAD
 print(df["EDAD"].value_counts())
 
-df['EDAD'] = df['EDAD'].replace('SIN INFORMACION', 0)
+df['EDAD'] = df['EDAD'].replace('SIN INFORMACION', None)
 promedio = df['EDAD'].mean(skipna=True)
 df['EDAD'] = df['EDAD'].fillna(promedio)
 
@@ -166,7 +166,10 @@ print(df['EDAD'].value_counts())
 df['CHOQUE'] = df['CHOQUE'].fillna(0)
 df['CLASE_VEHICULO'] = df['CLASE_VEHICULO'].fillna(0)
 df['SERVICIO'] = df['SERVICIO'].fillna(0)
+
+#CODIGO_CAUSA
 df['CODIGO_CAUSA'] = df['CODIGO_CAUSA'].fillna(0)
+df['CODIGO_CAUSA'] = df['CODIGO_CAUSA'].replace('ANT-133',0)
 
 #comprobar valores
 for i in range(df.shape[1]):
