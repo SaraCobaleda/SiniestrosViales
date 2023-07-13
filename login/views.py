@@ -3,8 +3,25 @@ from django.http import HttpResponse, JsonResponse
 from .models import Project, Task
 from django.shortcuts import get_object_or_404, render, redirect
 from .forms import CreateNewTask, CreateNewProject
+from django.contrib.auth.models import User
 
 # Create your views here.
+def register(request):
+    if request.method == 'GET':
+        return render(request, 'register.html')
+    else:
+        try:
+            user = User.objects.create_user(username=request.POST['username'], password=request.POST['password'])
+            user.save()
+            return render(request, 'login.html', {'message': 'User created successfully'})
+        except:
+            return render(request, 'register.html', {'error': 'User could not be created'})
+        
+def login(request):
+    return render(request, 'login.html')    
+
+#falta arreglar
+
 def index(request):
     title = "Aplicacion en django!!"
     #return HttpResponse("<h1>index page</h1>")
@@ -13,11 +30,6 @@ def index(request):
 def holaMundo(request, username):
     print(username)
     return HttpResponse("<h1>Hola %s</h1>" % username)
-
-def hola(request):
-    creator = "ME!"
-    #return HttpResponse("<h2>holi</h2>")
-    return render(request, 'about.html', {'creator': creator})
 
 def projects(request):
     projects = list(Project.objects.values())
