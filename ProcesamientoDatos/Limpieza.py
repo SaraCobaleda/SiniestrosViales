@@ -74,12 +74,6 @@ correlacion = muestra['FECHA_x'].corr(muestra['FECHA_z'])
 porcentaje_similitud = abs(correlacion) * 100
 print("Porcentaje de similitud FECHA_x y FECHA_z:", porcentaje_similitud)
 
-#comparando la similitud de las columnas vehiculo con el coheficiente de Spearman 
-
-correlacion_spearman = muestra['VEHICULO_x'].astype('category').cat.codes.corr(muestra['VEHICULO_y'].astype('category').cat.codes, method='spearman')
-correlacion_spearman = abs(correlacion_spearman) * 100
-print("Coeficiente de correlación de Spearman:", correlacion_spearman)
-
 #eliminar columnas innecesarias o duplicadas
 df = df.drop('OBJETO_FIJO', axis=1)
 df = df.drop('MODALIDAD', axis=1)
@@ -171,8 +165,64 @@ df['SERVICIO'] = df['SERVICIO'].fillna(0)
 df['CODIGO_CAUSA'] = df['CODIGO_CAUSA'].fillna(0)
 df['CODIGO_CAUSA'] = df['CODIGO_CAUSA'].replace('ANT-133',0)
 
+#GRAVEDAD
+print(df["GRAVEDAD"].value_counts())
+print(df['SEXO'].isnull().sum())
+
+#CLASE_SINIESTRO
+print(df["CLASE_SINIESTRO"].value_counts())
+print(df['SEXO'].isnull().sum())
+
+#CODIGO_LOCALIDAD
+print(df["CODIGO_LOCALIDAD"].value_counts())
+print(df['SEXO'].isnull().sum())
+
+#DISENO_LUGAR
+print(df["DISENO_LUGAR"].value_counts())
+print(df['SEXO'].isnull().sum())
+
 #comprobar valores
 for i in range(df.shape[1]):
     print(df[df.columns[i]].value_counts())
     
 df.to_csv(r"D:\SiniestrosViales\ProcesamientoDatos\DataLimpia.csv", index=False)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
