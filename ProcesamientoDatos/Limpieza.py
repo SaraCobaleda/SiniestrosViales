@@ -135,16 +135,9 @@ df['ENFUGA'] = df['ENFUGA'].fillna(0)
 print(df['ENFUGA'].isnull().sum())
 print(df['ENFUGA'].value_counts())
 
-#FECHA_x
-df['FECHA_x'] = pd.to_datetime(df['FECHA_x'])
-df['FECHA_x'] = df['FECHA_x'].map(fecha_a_ordinal)
-print(df['FECHA_x'].isnull().sum())
-print(df['FECHA_x'].value_counts())
-
-#HORA
-df['HORA'] = pd.to_timedelta(df['HORA']).dt.total_seconds().astype(int)
-print(df['HORA'].isnull().sum())
-print(df['HORA'].value_counts())
+#FECHA_x y HORA
+df['FECHA_HORA'] = pd.to_datetime(df['FECHA_x'] + ' ' + df['HORA'])
+df.drop(['FECHA_x', 'HORA'], axis=1, inplace=True)
 
 #EDAD
 print(df["EDAD"].value_counts())
