@@ -1,0 +1,59 @@
+[33mcommit 719e1b67f63d8361e5ddd0edc27a68c3c6531ce0[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Sara Cobaleda <Sara.CobaledaC@gmail.com>
+Date:   Sun Jul 16 23:38:20 2023 -0500
+
+    avance en los modelos de clasificacion
+
+[33mcommit 6d8b6fa8bae87f7d9eaa32f202ce4e0d72e358dc[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Sara Cobaleda <Sara.CobaledaC@gmail.com>
+Date:   Sat Jul 15 23:10:31 2023 -0500
+
+    adelanto en la aplicacion de algoritmos
+
+[33mcommit e784d4b447d3950b34996b4f9b787815bb3a6340[m
+Author: Sara Cobaleda <Sara.CobaledaC@gmail.com>
+Date:   Fri Jul 14 20:23:27 2023 -0500
+
+    agregar el index y pruebas con algoritmo CRM
+
+[33mcommit b4f1dae7ccc8c337a7378332d95898721adbd3ff[m
+Author: Sara Cobaleda <Sara.CobaledaC@gmail.com>
+Date:   Thu Jul 13 00:53:24 2023 -0500
+
+    creacion del registro de usuario implementando una plantilla de bootstraps
+
+[33mcommit d93790708bcccb3ea9388e4364b33ee20f5765f3[m
+Author: Sara Cobaleda <Sara.CobaledaC@gmail.com>
+Date:   Tue Jul 11 23:53:36 2023 -0500
+
+    fin de las primeras pruebas con django
+
+[33mcommit 7eba9fff6386479a0f207f53f65337a01d0b383d[m
+Author: Sara Cobaleda <Sara.CobaledaC@gmail.com>
+Date:   Sun Jul 9 02:24:58 2023 -0500
+
+    avance con el aprendizaje en el CRUD de Django: formularios
+
+[33mcommit 69196a927faae278a1ee588713aa132a8795a297[m
+Author: Sara Cobaleda <Sara.CobaledaC@gmail.com>
+Date:   Tue Jul 4 00:07:42 2023 -0500
+
+    Finalizacion de limpieza de los datos
+
+[33mcommit 6ad17f26093757d314c2f60e217517dcd4c2e8ad[m
+Author: Sara Cobaleda <Sara.CobaledaC@gmail.com>
+Date:   Thu Jun 29 01:10:47 2023 -0500
+
+    eliminar columnas innecesarias
+
+[33mcommit 8c71ea4d592c107afebba12a34813b987d98c322[m
+Author: Sara Cobaleda <Sara.CobaledaC@gmail.com>
+Date:   Thu Jun 29 00:58:46 2023 -0500
+
+    avance en el diagnostico de la calidad de los datos
+
+[33mcommit f3a811c6f8ae1b4fdc2da3a927102afe6dcae5ee[m
+Author: Sara Cobaleda <Sara.CobaledaC@gmail.com>
+Date:   Tue Jun 27 01:30:05 2023 -0500
+
+    avance con la limpieza de datos
