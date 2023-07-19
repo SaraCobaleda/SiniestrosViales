@@ -18,7 +18,7 @@ class Siniestro(models.Model):
     codigoCausa = models.FloatField()
     fechaHora = models.DateTimeField()
     def __str__(self):
-        return str(self.pk)
+        return str(self.fechaHora)
     
 class Prueba(models.Model):
     name = models.CharField(max_length=200)
