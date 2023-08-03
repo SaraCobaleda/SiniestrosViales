@@ -5,6 +5,7 @@ urlpatterns = [
     #path("", views.index, name = 'index'),
     path("register/", views.register, name = 'register'),
     path("", views.signin, name = 'signin'),
+    path('signup/', views.signup, name='signup'),
 
     #path("hello/<str:username>", views.holaMundo, name = 'hello'),
     path("projects/", views.projects, name = 'projects'),

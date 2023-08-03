@@ -24,9 +24,18 @@ def index(request):
     claseSiniestro = np.array(list(claseSiniestro))
 
     df = pd.DataFrame({'Fecha': fechaHora, 'Valor': gravedad})
-    fig = px.line(df, x='Fecha', y='Valor')
+    fig = px.line(df, x='Fecha', y='Valor', markers=True)
     plot_div = fig.to_html(full_html=False, include_plotlyjs=True)
 
     datos  = Siniestro.objects.all()
     print(datos)
     return render(request, 'index.html', {'plot_div': plot_div})
+
+@login_required
+def usersProfile(request):
+     return render(request, 'users-profile.html')
+
+@login_required
+def basicQuestions(request):
+     print("basicQuestions")
+     return render(request, 'pages-faq.html')

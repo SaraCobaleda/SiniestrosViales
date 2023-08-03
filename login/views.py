@@ -36,7 +36,7 @@ def signin(request):
         
 
 @login_required
-def signout(request):
+def signup(request):
     logout(request)
     return redirect('signin')
 
