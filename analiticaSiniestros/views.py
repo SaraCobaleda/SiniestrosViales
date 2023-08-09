@@ -56,21 +56,33 @@ def index(request):
     codigoCausa = [registro.codigoCausa for registro in registros_mas_recientes]
     codigoCausa = np.array(list(claseSiniestro))
 
-    dfFecha = pd.DataFrame({'Fecha': fechaHora})
     df = pd.DataFrame({'Fecha': fechaHora, 'gravedad': gravedad, "choque":choque, "condicion":condicion})
     fig = px.line(df, x='Fecha', y='gravedad', markers=True)
     plot_div = fig.to_html(full_html=False, include_plotlyjs=True)
 
     fig2 = go.Figure()
-    fig2.add_trace(go.Scatter(x=fechaHora, y=choque ,mode='lines',name='lines'))
-    fig2.add_trace(go.Scatter(x=fechaHora, y=gravedad ,mode='markers+markers',name='lines+markers'))
-    fig2.add_trace(go.Scatter(x=fechaHora, y=condicion,mode='markers', name='markers'))
+    fig2.add_trace(go.Scatter(x=fechaHora, y=choque ,mode='lines',name='choque'))
+    fig2.add_trace(go.Scatter(x=fechaHora, y=gravedad ,mode='lines',name='gravedad'))
+    fig2.add_trace(go.Scatter(x=fechaHora, y=condicion ,mode='lines', name='condicion'))
 
     plot_div2 = fig2.to_html(full_html=False, include_plotlyjs=True)
 
+    datos_pastel = {"Manzanas": 25, "Plátanos": 15, "Naranjas": 30, "Uvas": 10,}
+
+    piefig = px.pie(values=list(datos_pastel.values()), names=list(datos_pastel.keys()), title="Gráfico de Pastel")
+    plot_div3 = piefig.to_html(full_html=False, include_plotlyjs=True)
+
     datos  = Siniestro.objects.all()
     print(datos)
-    return render(request, 'index.html', {'plot_div': plot_div, 'plot_div2': plot_div2})
+    return render(request, 'index.html', {'plot_div': plot_div, 'plot_div2': plot_div2, 'plot_div3': plot_div3})
+
+@login_required
+def diccionario(request):
+     return render(request, 'diccionario.html')
+
+@login_required
+def verDatos(request):
+     return render(request, 'ver-datos.html')
 
 @login_required
 def usersProfile(request):
