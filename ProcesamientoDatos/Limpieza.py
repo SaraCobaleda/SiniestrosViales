@@ -9,7 +9,7 @@ vehiculos = pd.read_excel(r"D:\SiniestrosViales\ProcesamientoDatos\siniestros_vi
 hipotesis = pd.read_excel(r"D:\SiniestrosViales\ProcesamientoDatos\siniestros_viales_consolidados_bogota_dc.xlsx", sheet_name="HIPOTESIS")
 diccionario = pd.read_excel(r"D:\SiniestrosViales\ProcesamientoDatos\siniestros_viales_consolidados_bogota_dc.xlsx", sheet_name="DICCIONARIO")
 
-historico = pd.read_csv(r"D:\SiniestrosViales\ProcesamientoDatos\historico_siniestros_bogota_d.c_-.csv")
+#historico = pd.read_csv(r"D:\SiniestrosViales\ProcesamientoDatos\historico_siniestros_bogota_d.c_-.csv")
 
 #DIAGNOSTICO
 
@@ -178,44 +178,120 @@ print(df['SEXO'].isnull().sum())
 for i in range(df.shape[1]):
     print(df[df.columns[i]].value_counts())
     
+#reacomodando los codigos de la causa
+
+mapeo_cod_causa = {90	:	1	,
+                    91	:	2	,
+                    92	:	3	,
+                    93	:	4	,
+                    94	:	5	,
+                    95	:	6	,
+                    96	:	7	,
+                    97	:	8	,
+                    98	:	9	,
+                    99	:	10	,
+                    101	:	11	,
+                    102	:	12	,
+                    103	:	13	,
+                    104	:	14	,
+                    105	:	15	,
+                    106	:	16	,
+                    107	:	17	,
+                    108	:	18	,
+                    109	:	19	,
+                    110	:	20	,
+                    111	:	21	,
+                    112	:	22	,
+                    113	:	23	,
+                    114	:	24	,
+                    115	:	25	,
+                    116	:	26	,
+                    117	:	27	,
+                    118	:	28	,
+                    119	:	29	,
+                    120	:	30	,
+                    121	:	31	,
+                    122	:	32	,
+                    123	:	33	,
+                    124	:	34	,
+                    125	:	35	,
+                    126	:	36	,
+                    127	:	37	,
+                    128	:	38	,
+                    129	:	39	,
+                    130	:	40	,
+                    131	:	41	,
+                    132	:	42	,
+                    133	:	43	,
+                    134	:	44	,
+                    135	:	45	,
+                    136	:	46	,
+                    137	:	47	,
+                    138	:	48	,
+                    139	:	49	,
+                    140	:	50	,
+                    141	:	51	,
+                    142	:	52	,
+                    143	:	53	,
+                    144	:	54	,
+                    145	:	55	,
+                    146	:	56	,
+                    147	:	57	,
+                    148	:	58	,
+                    149	:	59	,
+                    150	:	60	,
+                    151	:	61	,
+                    152	:	62	,
+                    153	:	63	,
+                    154	:	64	,
+                    155	:	65	,
+                    156	:	66	,
+                    157	:	67	,
+                    201	:	68	,
+                    202	:	69	,
+                    203	:	70	,
+                    204	:	71	,
+                    205	:	72	,
+                    206	:	73	,
+                    207	:	74	,
+                    208	:	75	,
+                    209	:	76	,
+                    210	:	77	,
+                    211	:	78	,
+                    212	:	79	,
+                    213	:	80	,
+                    214	:	81	,
+                    216	:	82	,
+                    217	:	83	,
+                    301	:	84	,
+                    302	:	85	,
+                    303	:	86	,
+                    304	:	87	,
+                    305	:	88	,
+                    306	:	89	,
+                    307	:	90	,
+                    308	:	91	,
+                    401	:	92	,
+                    402	:	93	,
+                    403	:	94	,
+                    404	:	95	,
+                    405	:	96	,
+                    406	:	97	,
+                    407	:	98	,
+                    408	:	99	,
+                    409	:	100	,
+                    410	:	101	,
+                    411	:	102	,
+                    501	:	103	,
+                    502	:	104	,
+                    503	:	105	,
+                    504	:	106	,
+                    505	:	107	,
+                    506	:	108	,
+                    }
+
+df['CODIGO_CAUSA'] = df['CODIGO_CAUSA'].replace(mapeo_cod_causa)
+df['CODIGO_CAUSA'] = df['CODIGO_CAUSA'].fillna(0)
+
+    
 df.to_csv(r"D:\SiniestrosViales\ProcesamientoDatos\DataLimpia.csv", index=False)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

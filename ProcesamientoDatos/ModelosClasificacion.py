@@ -16,7 +16,7 @@ df = pd.read_csv(r"D:\SiniestrosViales\ProcesamientoDatos\DataLimpia.csv")
 df = df.drop('FECHA_HORA', axis=1)
 
 #muestra aleatoria
-muestra = 1000
+muestra = 100000
 df = df.sample(n=muestra)
 
 # Cuantos Valores faltantes hay
@@ -247,24 +247,3 @@ print("Precisión del modelo Random Forest:", accuracy)
 
 #Exportamos el modelo
 joblib.dump(rf_model, r'D:\SiniestrosViales\Modelos Clasificacion\rf_model_CODIGO_CAUSA.pkl')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
