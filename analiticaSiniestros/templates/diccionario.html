@@ -7,127 +7,115 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Cards</h1>
+      <h1>Diccionario</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Components</li>
-          <li class="breadcrumb-item active">Cards</li>
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item">Entendimiento</li>
+          <li class="breadcrumb-item active">Diccionario</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
       <div class="row align-items-top">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
 
-          <!-- Default Card -->
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Default Card</h5>
-              Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-              Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
-              Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
-            </div>
-          </div><!-- End Default Card -->
+              <h5 class="card-title">Diccionario</h5>
 
-          <!-- Card with header and footer -->
-          <div class="card">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-              <h5 class="card-title">Card with header and footer</h5>
-              Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-              Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
-              Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
-            </div>
-            <div class="card-footer">
-              Footer
-            </div>
-          </div><!-- End Card with header and footer -->
-
-          <!-- Card with an image on left -->
-          <div class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="assets/img/card.jpg" class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Card with an image on left</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <!-- Vertical Pills Tabs -->
+              <div class="d-flex align-items-start">
+                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                  <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">GRAVEDAD</button>
+                  <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">CLASE SINIESTRO</button>
+                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">CHOQUE</button>
+                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">LOCALIDAD</button>
+                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">DISENO LUGAR</button>
+                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">CONDICION</button>
+                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">ESTADO</button>
+                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">EDAD</button>
+                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">SEXO</button>
+                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">CLASE VEHICULO</button>
+                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">SERVICIO</button>
+                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">ENFUGA</button>
+                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">CAUSA</button>
+                </div>
+                <div class="tab-content" id="v-pills-tabContent">
+                  <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                    <div class="card-body">
+                      <h5 class="card-title">GRAVEDAD</h5>
+                      <table class="table">
+                        <tr>
+                          <th>Codigo</th>
+                          <th>Significado</th>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                          <td>Con Muertos</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Con Heridos</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>Solo Daños</td>
+                        </tr>
+                      </table>
+                    </div>
+                    Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                    <div class="card-body">
+                      <h5 class="card-title">CLASE SINIESTRO</h5>
+                      <table class="table">
+                        <tr>
+                          <th>Codigo</th>
+                          <th>Significado</th>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                          <td>Choque</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Atropello</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>Volcamiento</td>
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                          <td>Caida de ocupante</td>
+                        </tr>
+                        <tr>
+                          <td>5</td>
+                          <td>Incendio</td>
+                        </tr>
+                        <tr>
+                          <td>6</td>
+                          <td>Otro</td>
+                        </tr>
+                        <tr>
+                          <td>7</td>
+                          <td>Autolesions</td>
+                        </tr>
+                      </table>
+                    </div>
+                    Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                    Saepe animi et soluta ad odit soluta sunt. Nihil quos omnis animi debitis cumque. Accusantium quibusdam perspiciatis qui qui omnis magnam. Officiis accusamus impedit molestias nostrum veniam. Qui amet ipsum iure. Dignissimos fuga tempore dolor.
+                  </div>
                 </div>
               </div>
+              <!-- End Vertical Pills Tabs -->
+
             </div>
-          </div><!-- End Card with an image on left -->
-
-        </div>
-
-        <div class="col-lg-3">
-
-          <!-- Card with an image on top -->
-          <div class="card">
-            <img src="assets/img/card.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card with an image on top</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-          </div><!-- End Card with an image on top -->
-
-          <!-- Card with an image on bottom -->
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card with an image on bottom</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            <img src="assets/img/card.jpg" class="card-img-bottom" alt="...">
-          </div><!-- End Card with an image on bottom -->
-
-        </div>
-
-        <div class="col-lg-3">
-
-          <!-- Card with an image overlay -->
-          <div class="card">
-            <img src="assets/img/card.jpg" class="card-img-top" alt="...">
-            <div class="card-img-overlay">
-              <h5 class="card-title">Card with an image overlay</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-          </div><!-- End Card with an image overlay -->
-
-          <!-- Card with titles, buttons, and links -->
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card with titles, buttons, and links</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <p class="card-text"><a href="#" class="btn btn-primary">Button</a></p>
-              <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div><!-- End Card with titles, buttons, and links -->
-
-          <!-- Special title treatmen -->
-          <div class="card text-center">
-            <div class="card-header">
-              <ul class="nav nav-pills card-header-pills">
-                <li class="nav-item">
-                  <a class="nav-link active" href="#">Active</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div><!-- End Special title treatmen -->
+          </div>
 
         </div>
 

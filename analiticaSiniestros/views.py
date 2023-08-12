@@ -57,24 +57,36 @@ def index(request):
     codigoCausa = np.array(list(claseSiniestro))
 
     df = pd.DataFrame({'Fecha': fechaHora, 'gravedad': gravedad, "choque":choque, "condicion":condicion})
-    fig = px.line(df, x='Fecha', y='gravedad', markers=True)
+
+    fig = px.scatter(df, x='Fecha', y='gravedad')
     plot_div = fig.to_html(full_html=False, include_plotlyjs=True)
 
-    fig2 = go.Figure()
-    fig2.add_trace(go.Scatter(x=fechaHora, y=choque ,mode='lines',name='choque'))
-    fig2.add_trace(go.Scatter(x=fechaHora, y=gravedad ,mode='lines',name='gravedad'))
-    fig2.add_trace(go.Scatter(x=fechaHora, y=condicion ,mode='lines', name='condicion'))
-
+    fig2 = px.scatter(df, x='Fecha', y='choque')
     plot_div2 = fig2.to_html(full_html=False, include_plotlyjs=True)
 
-    datos_pastel = {"Manzanas": 25, "Plátanos": 15, "Naranjas": 30, "Uvas": 10,}
+    hombre = 0
+    mujer = 0
 
-    piefig = px.pie(values=list(datos_pastel.values()), names=list(datos_pastel.keys()), title="Gráfico de Pastel")
+    for genero in sexo:
+         if genero > 0:
+              hombre = hombre + 1
+         else:
+              mujer = mujer + 1
+
+    datos_pastel = {"Hombres": hombre, "Mujeres": mujer}
+
+    piefig = px.pie(values=list(datos_pastel.values()), names=list(datos_pastel.keys()))
     plot_div3 = piefig.to_html(full_html=False, include_plotlyjs=True)
+
+    fig4 = px.scatter(df, x='Fecha', y='condicion')
+    plot_div4 = fig2.to_html(full_html=False, include_plotlyjs=True)
 
     datos  = Siniestro.objects.all()
     print(datos)
-    return render(request, 'index.html', {'plot_div': plot_div, 'plot_div2': plot_div2, 'plot_div3': plot_div3})
+    return render(request, 'index.html', {'plot_div': plot_div, 
+                                          'plot_div2': plot_div2, 
+                                          'plot_div3': plot_div3, 
+                                          'plot_div4': plot_div4})
 
 @login_required
 def diccionario(request):
