@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from django.http import Http404
 from django.contrib.auth.decorators import login_required
+
 import plotly.graph_objects as go
 import plotly.express as px
 
