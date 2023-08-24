@@ -11,7 +11,7 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-          <li class="breadcrumb-item">Entendimiento</li>
+          <li class="breadcrumb-item">Entendimiento de los Datos</li>
           <li class="breadcrumb-item active">Diccionario</li>
         </ol>
       </nav>
@@ -31,84 +31,353 @@
                   <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">GRAVEDAD</button>
                   <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">CLASE SINIESTRO</button>
                   <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">CHOQUE</button>
-                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">LOCALIDAD</button>
-                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">DISENO LUGAR</button>
-                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">CONDICION</button>
-                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">ESTADO</button>
-                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">EDAD</button>
-                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">SEXO</button>
-                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">CLASE VEHICULO</button>
-                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">SERVICIO</button>
-                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">ENFUGA</button>
-                  <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">CAUSA</button>
+                  <button class="nav-link" id="v-pills-messages2-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages2" type="button" role="tab" aria-controls="v-pills-messages2" aria-selected="false">LOCALIDAD</button>
+                  <button class="nav-link" id="v-pills-messages3-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages3" type="button" role="tab" aria-controls="v-pills-messages3" aria-selected="false">DISENO LUGAR</button>
+                  <button class="nav-link" id="v-pills-messages4-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages4" type="button" role="tab" aria-controls="v-pills-messages4" aria-selected="false">CONDICION</button>
+                  <button class="nav-link" id="v-pills-messages5-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages5" type="button" role="tab" aria-controls="v-pills-messages5" aria-selected="false">ESTADO</button>
+                  <button class="nav-link" id="v-pills-messages6-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages6" type="button" role="tab" aria-controls="v-pills-messages6" aria-selected="false">EDAD</button>
+                  <button class="nav-link" id="v-pills-messages7-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages7" type="button" role="tab" aria-controls="v-pills-messages7" aria-selected="false">SEXO</button>
+                  <button class="nav-link" id="v-pills-messages8-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages8" type="button" role="tab" aria-controls="v-pills-messages8" aria-selected="false">CLASE VEHICULO</button>
+                  <button class="nav-link" id="v-pills-messages9-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages9" type="button" role="tab" aria-controls="v-pills-messages9" aria-selected="false">SERVICIO</button>
+                  <button class="nav-link" id="v-pills-messages10-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages10" type="button" role="tab" aria-controls="v-pills-messages10" aria-selected="false">ENFUGA</button>
+                  <button class="nav-link" id="v-pills-messages11-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages11" type="button" role="tab" aria-controls="v-pills-messages11" aria-selected="false">CAUSA</button>
                 </div>
                 <div class="tab-content" id="v-pills-tabContent">
                   <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                     <div class="card-body">
-                      <h5 class="card-title">GRAVEDAD</h5>
-                      <table class="table">
-                        <tr>
-                          <th>Codigo</th>
-                          <th>Significado</th>
-                        </tr>
-                        <tr>
-                          <td>1</td>
-                          <td>Con Muertos</td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>Con Heridos</td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td>Solo Daños</td>
-                        </tr>
-                      </table>
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">GRAVEDAD</h5>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                  <th>Id</th>
+                                  <th>Deescripcion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for gravedad in gravedades %}
+                                <tr>
+                                  <td>{{ gravedad.idGravedad }}</td>
+                                  <td>{{ gravedad.DescGravedad }}</td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                          Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
+                        </div>
+                      </div>
                     </div>
-                    Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
                   </div>
                   <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <div class="card-body">
-                      <h5 class="card-title">CLASE SINIESTRO</h5>
-                      <table class="table">
-                        <tr>
-                          <th>Codigo</th>
-                          <th>Significado</th>
-                        </tr>
-                        <tr>
-                          <td>1</td>
-                          <td>Choque</td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>Atropello</td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td>Volcamiento</td>
-                        </tr>
-                        <tr>
-                          <td>4</td>
-                          <td>Caida de ocupante</td>
-                        </tr>
-                        <tr>
-                          <td>5</td>
-                          <td>Incendio</td>
-                        </tr>
-                        <tr>
-                          <td>6</td>
-                          <td>Otro</td>
-                        </tr>
-                        <tr>
-                          <td>7</td>
-                          <td>Autolesions</td>
-                        </tr>
-                      </table>
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">CLASE SINIESTRO</h5>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                  <th>Id</th>
+                                  <th>Deescripcion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for claseSiniestro in claseSiniestros %}
+                                <tr>
+                                  <td>{{ claseSiniestro.idClaseSiniestro }}</td>
+                                  <td>{{ claseSiniestro.DescClaseSiniestro }}</td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                          Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
+                        </div>
+                      </div>
                     </div>
-                    Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
                   </div>
                   <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                    Saepe animi et soluta ad odit soluta sunt. Nihil quos omnis animi debitis cumque. Accusantium quibusdam perspiciatis qui qui omnis magnam. Officiis accusamus impedit molestias nostrum veniam. Qui amet ipsum iure. Dignissimos fuga tempore dolor.
+                    <div class="card-body">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">CHOQUE</h5>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                  <th>Id</th>
+                                  <th>Deescripcion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for choque in choques %}
+                                <tr>
+                                  <td>{{ choque.idChoque }}</td>
+                                  <td>{{ choque.DescChoque }}</td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                          Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-messages2" role="tabpanel" aria-labelledby="v-pills-messages2-tab">
+                    <div class="card-body">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">LOCALIDAD</h5>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                  <th>Id</th>
+                                  <th>Deescripcion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for codigoLocalidad in codigoLocalidades %}
+                                <tr>
+                                  <td>{{ codigoLocalidad.idCodigoLocalidad }}</td>
+                                  <td>{{ codigoLocalidad.DescCodigoLocalidad }}</td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                          Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-messages3" role="tabpanel" aria-labelledby="v-pills-messages3-tab">
+                    <div class="card-body">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">LUGARES</h5>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                  <th>Id</th>
+                                  <th>Deescripcion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for disenoLugar in disenoLugares %}
+                                <tr>
+                                  <td>{{ disenoLugar.idDisenoLugar }}</td>
+                                  <td>{{ disenoLugar.DescDisenoLugar }}</td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                          Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-messages4" role="tabpanel" aria-labelledby="v-pills-messages4-tab">
+                    <div class="card-body">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">CONDICION</h5>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                  <th>Id</th>
+                                  <th>Deescripcion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for condicion in condiciones %}
+                                <tr>
+                                  <td>{{ condicion.idCondicion }}</td>
+                                  <td>{{ condicion.DescCondicion }}</td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                          Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-messages5" role="tabpanel" aria-labelledby="v-pills-messages5-tab">
+                    <div class="card-body">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">ESTADO</h5>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                  <th>Id</th>
+                                  <th>Deescripcion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for estado in estados %}
+                                <tr>
+                                  <td>{{ estado.idEstado }}</td>
+                                  <td>{{ estado.DescEstado }}</td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                          Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-messages6" role="tabpanel" aria-labelledby="v-pills-messages6-tab">
+                    <div class="card-body">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">EDAD</h5>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                  <th>Edades</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for edad in edades %}
+                                <tr>
+                                  <td>{{ edad }}</td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                          Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-messages7" role="tabpanel" aria-labelledby="v-pills-messages7-tab">
+                    <div class="card-body">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">SEXO</h5>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                  <th>Id</th>
+                                  <th>Deescripcion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for sexo in sexos %}
+                                <tr>
+                                  <td>{{ sexo.idSexo }}</td>
+                                  <td>{{ sexo.DescSexo }}</td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                          Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-messages8" role="tabpanel" aria-labelledby="v-pills-messages8-tab">
+                    <div class="card-body">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">CLASE VEHICULO</h5>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                  <th>Id</th>
+                                  <th>Deescripcion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for claseVehiculo in claseVehiculos %}
+                                <tr>
+                                  <td>{{ claseVehiculo.idClaseVehiculo }}</td>
+                                  <td>{{ claseVehiculo.DescClaseVehiculo }}</td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                          Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-messages9" role="tabpanel" aria-labelledby="v-pills-messages9-tab">
+                    <div class="card-body">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">SERVICIO</h5>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                  <th>Id</th>
+                                  <th>Deescripcion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for servicio in servicios %}
+                                <tr>
+                                  <td>{{ servicio.idServicio }}</td>
+                                  <td>{{ servicio.DescServicio }}</td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                          Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-messages10" role="tabpanel" aria-labelledby="v-pills-messages10-tab">
+                    <div class="card-body">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">ENFUGA</h5>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                  <th>Id</th>
+                                  <th>Deescripcion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for enfuga in enfugas %}
+                                <tr>
+                                  <td>{{ enfuga.idEnfuga }}</td>
+                                  <td>{{ enfuga.DescEnfuga }}</td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                          Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-messages11" role="tabpanel" aria-labelledby="v-pills-messages11-tab">
+                    <div class="card-body">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">CAUSA</h5>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                  <th>Id</th>
+                                  <th>Deescripcion</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for codigoCausa in codigoCausas %}
+                              <tr>
+                                  <td>{{ codigoCausa.idCodigoCausa }}</td>
+                                  <td>{{ codigoCausa.DescCodigoCausa }}</td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                          Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

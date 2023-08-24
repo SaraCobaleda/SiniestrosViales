@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 import plotly.graph_objects as go
 import plotly.express as px
 
-from analiticaSiniestros.models import Siniestro, Prueba
+from analiticaSiniestros.models import *
 
 import numpy as np
 import pandas as pd
@@ -92,11 +92,37 @@ def index(request):
 
 @login_required
 def diccionario(request):
-     return render(request, 'diccionario.html')
+     gravedades = Gravedad.objects.all()
+     claseSinisestro = ClaseSiniestro.objects.all()
+     choque = Choque.objects.all()
+     codigoLocalidad = CodigoLocalidad.objects.all()
+     disenoLugar = DisenoLugar.objects.all()
+     condicion = Condicion.objects.all()
+     estado = Estado.objects.all()
+     edad = Siniestro.objects.values_list('edad', flat=True).distinct()
+     sexo = Sexo.objects.all()
+     claseVehiculo = ClaseVehiculo.objects.all()
+     servicio = Servicio.objects.all()
+     enfuga = Enfuga.objects.all()
+     codigoCausa = CodigoCausa.objects.all()
+     return render(request, 'diccionario.html', {'gravedades': gravedades,
+                                                 'claseSiniestros': claseSinisestro,
+                                                 'choques': choque,
+                                                 'codigoLocalidades': codigoLocalidad,
+                                                 'disenoLugares': disenoLugar,
+                                                 'condiciones': condicion,
+                                                 'estados': estado,
+                                                 'edades': edad,
+                                                 'sexos': sexo,
+                                                 'claseVehiculos': claseVehiculo,
+                                                 'servicios': servicio,
+                                                 'enfugas': enfuga,
+                                                 'codigoCausas': codigoCausa})
 
 @login_required
 def verDatos(request):
-     return render(request, 'ver-datos.html')
+     siniestro = Siniestro.objects.all()
+     return render(request, 'ver-datos.html', {'siniestros': siniestro})
 
 @login_required
 def usersProfile(request):
