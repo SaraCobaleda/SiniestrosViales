@@ -24,4 +24,75 @@ class Prueba(models.Model):
     name = models.CharField(max_length=200)
     def __str__(self):
         return self.name
+    
+class Gravedad(models.Model):
+    idGravedad = models.FloatField()
+    DescGravedad = models.CharField(max_length=200)
+    def __str__(self):
+        return self.DescGravedad
+    
+class ClaseSiniestro(models.Model):
+    idClaseSiniestro = models.FloatField()
+    DescClaseSiniestro = models.CharField(max_length=200)
+    def __str__(self):
+        return self.DescClaseSiniestro
 
+class Choque(models.Model):
+    idChoque = models.FloatField()
+    DescChoque = models.CharField(max_length=200)
+    def __str__(self):
+        return self.DescChoque
+
+class CodigoLocalidad(models.Model):
+    idCodigoLocalidad = models.FloatField()
+    DescCodigoLocalidad = models.CharField(max_length=200)
+    def __str__(self):
+        return self.DescCodigoLocalidad
+    
+class DisenoLugar(models.Model):
+    idDisenoLugar = models.FloatField()
+    DescDisenoLugar = models.CharField(max_length=200)
+    def __str__(self):
+        return self.DescDisenoLugar
+    
+class Condicion(models.Model):
+    idCondicion = models.FloatField()
+    DescCondicion = models.CharField(max_length=200)
+    def __str__(self):
+        return self.DescCondicion
+    
+class Estado(models.Model):
+    idEstado = models.FloatField()
+    DescEstado = models.CharField(max_length=200)
+    def __str__(self):
+        return self.DescEstado
+    
+class Sexo(models.Model):
+    idSexo = models.FloatField()
+    DescSexo = models.CharField(max_length=200)
+    def __str__(self):
+        return self.DescSexo
+    
+class ClaseVehiculo(models.Model):
+    idClaseVehiculo = models.FloatField()
+    DescClaseVehiculo = models.CharField(max_length=200)
+    def __str__(self):
+        return self.DescClaseVehiculo
+    
+class Servicio(models.Model):
+    idServicio = models.FloatField()
+    DescServicio = models.CharField(max_length=200)
+    def __str__(self):
+        return self.DescServicio
+    
+class Enfuga(models.Model):
+    idEnfuga = models.FloatField()
+    DescEnfuga = models.CharField(max_length=200)
+    def __str__(self):
+        return self.DescEnfuga
+    
+class CodigoCausa(models.Model):
+    idCodigoCausa = models.FloatField()
+    DescCodigoCausa = models.CharField(max_length=200)
+    def __str__(self):
+        return self.DescCodigoCausa
