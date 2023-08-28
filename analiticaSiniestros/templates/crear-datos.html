@@ -34,7 +34,7 @@
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">Gravedad</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
+                    <select name="gravedadDato" class="form-select" aria-label="Default select example" required>
                       {% for gravedad in gravedades %}
                         <option value="{{ gravedad.idGravedad }}">{{ gravedad.DescGravedad }}</option>
                       {% endfor %}
@@ -45,7 +45,7 @@
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">Clase Siniestro</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
+                    <select name="claseSinisestroDato" class="form-select" aria-label="Default select example" required>
                       {% for claseSiniestro in claseSiniestros %}
                         <option value="{{ claseSiniestro.idClaseSiniestro }}">{{ claseSiniestro.DescClaseSiniestro }}</option>
                       {% endfor %}
@@ -56,7 +56,7 @@
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">Choque</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
+                    <select name="choqueDato" class="form-select" aria-label="Default select example" required>
                       {% for choque in choques %}
                         <option value="{{ choque.idChoque }}">{{ choque.DescChoque }}</option>
                       {% endfor %}
@@ -67,7 +67,7 @@
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">Localidad</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
+                    <select name="codigoLocalidadDato" class="form-select" aria-label="Default select example" required>
                       {% for codigoLocalidad in codigoLocalidades %}
                         <option value="{{ codigoLocalidad.idCodigoLocalidad }}">{{ codigoLocalidad.DescCodigoLocalidad }}</option>
                       {% endfor %}
@@ -78,7 +78,7 @@
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">Lugar</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
+                    <select name="disenoLugarDato" class="form-select" aria-label="Default select example" required>
                       {% for disenoLugar in disenoLugares %}
                         <option value="{{ disenoLugar.idDisenoLugar }}">{{ disenoLugar.DescDisenoLugar }}</option>
                       {% endfor %}
@@ -89,7 +89,7 @@
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">Condicion</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
+                    <select name="condicionDato" class="form-select" aria-label="Default select example" required>
                       {% for condicion in condiciones %}
                         <option value="{{ condicion.idCondicion }}">{{ condicion.DescCondicion }}</option>
                       {% endfor %}
@@ -100,7 +100,7 @@
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">Estado</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
+                    <select name="estadoDato" class="form-select" aria-label="Default select example" required>
                       {% for estado in estados %}
                         <option value="{{ estado.idEstado }}">{{ estado.DescEstado }}</option>
                       {% endfor %}
@@ -111,14 +111,14 @@
                 <div class="row mb-3">
                   <label for="inputNumber" class="col-sm-2 col-form-label">Edad</label>
                   <div class="col-sm-10">
-                    <input type="number" class="form-control">
+                    <input name="edadDato" type="number" class="form-control" required>
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">Sexo</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
+                    <select name="sexoDato" class="form-select" aria-label="Default select example" required>
                       {% for sexo in sexos %}
                         <option value="{{ sexo.idSexo }}">{{ sexo.DescSexo }}</option>
                       {% endfor %}
@@ -127,9 +127,9 @@
                 </div>
 
                 <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">Clase de Vahiculo</label>
+                  <label class="col-sm-2 col-form-label">Clase de Vehiculo</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
+                    <select name="claseVehiculoDato" class="form-select" aria-label="Default select example" required>
                       {% for claseVehiculo in claseVehiculos %}
                         <option value="{{ claseVehiculo.idClaseVehiculo }}">{{ claseVehiculo.DescClaseVehiculo }}</option>
                       {% endfor %}
@@ -138,9 +138,9 @@
                 </div>
 
                 <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">servicio</label>
+                  <label class="col-sm-2 col-form-label">Servicio</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
+                    <select name="servicioDato" class="form-select" aria-label="Default select example" required>
                       {% for servicio in servicios %}
                         <option value="{{ servicio.idServicio }}">{{ servicio.DescServicio }}</option>
                       {% endfor %}
@@ -151,7 +151,7 @@
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">En fuga</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
+                    <select name="enfugaDato" class="form-select" aria-label="Default select example" required>
                       {% for enfuga in enfugas %}
                         <option value="{{ enfuga.idEnfuga }}">{{ enfuga.DescEnfuga }}</option>
                       {% endfor %}
@@ -160,15 +160,26 @@
                 </div>
 
                 <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Causa</label>
+                  <div class="col-sm-10">
+                    <select name="codigoCausaDato" class="form-select" aria-label="Default select example" required>
+                      {% for codigoCausa in codigoCausas %}
+                        <option value="{{ codigoCausa.idCodigoCausa }}">{{ codigoCausa.DescCodigoCausa }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
                   <label for="inputDate" class="col-sm-2 col-form-label">Fecha</label>
                   <div class="col-sm-10">
-                    <input type="date" class="form-control">
+                    <input name="fechaDato" type="date" class="form-control" required>
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputTime" class="col-sm-2 col-form-label">Hora</label>
                   <div class="col-sm-10">
-                    <input type="time" class="form-control">
+                    <input name="horaDato" type="time" class="form-control" required>
                   </div>
                 </div>
 

@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 
 import plotly.graph_objects as go
 import plotly.express as px
+from datetime import datetime
+from django.utils import timezone
 
 from analiticaSiniestros.models import *
 
@@ -147,7 +149,7 @@ def basicQuestions(request):
 
 @login_required
 def crearDatos(request):
-    gravedades = Gravedad.objects.all()
+    gravedad = Gravedad.objects.all()
     claseSinisestro = ClaseSiniestro.objects.all()
     choque = Choque.objects.all()
     codigoLocalidad = CodigoLocalidad.objects.all()
@@ -161,7 +163,44 @@ def crearDatos(request):
     codigoCausa = CodigoCausa.objects.all()
 
     if request.method == 'POST':
-        return render(request, 'crear-datos.html', {'gravedades': gravedades,
+        gravedadDato = request.POST.get('gravedadDato')
+        claseSinisestroDato = request.POST.get('claseSinisestroDato')
+        choqueDato = request.POST.get('choqueDato')
+        codigoLocalidadDato = request.POST.get('codigoLocalidadDato')
+        disenoLugarDato = request.POST.get('disenoLugarDato')
+        condicionDato = request.POST.get('condicionDato')
+        estadoDato = request.POST.get('estadoDato')
+        edadDato = request.POST.get('edadDato')
+        sexoDato = request.POST.get('sexoDato')
+        claseVehiculoDato = request.POST.get('claseVehiculoDato')
+        servicioDato = request.POST.get('servicioDato')
+        enfugaDato = request.POST.get('enfugaDato')
+        codigoCausaDato = request.POST.get('codigoCausaDato')
+        fechaDato = request.POST.get('fechaDato')
+        horaDato = request.POST.get('horaDato')
+        fecha = datetime.strptime(fechaDato, "%Y-%m-%d")
+        hora = datetime.strptime(horaDato, "%H:%M")
+        fecha_hora = datetime.combine(fecha.date(), hora.time())
+        fecha_hora = timezone.make_aware(fecha_hora,  timezone=timezone.get_current_timezone())
+
+
+        siniestro = Siniestro(gravedad = gravedadDato, 
+                              claseSiniestro = claseSinisestroDato, 
+                              choque = choqueDato, 
+                              codigoLocalidad = codigoLocalidadDato,
+                              disenoLugar = disenoLugarDato,
+                              condicion = condicionDato,
+                              estado = estadoDato,
+                              edad = edadDato,
+                              sexo = sexoDato,
+                              claseVehiculo = claseVehiculoDato,
+                              servicio = servicioDato,
+                              enfuga = enfugaDato,
+                              codigoCausa = codigoCausaDato,
+                              fechaHora = fecha_hora)
+        siniestro.save()
+
+        return render(request, 'crear-datos.html', {'gravedades': gravedad,
                                                     'claseSiniestros': claseSinisestro,
                                                     'choques': choque,
                                                     'codigoLocalidades': codigoLocalidad,
@@ -175,7 +214,7 @@ def crearDatos(request):
                                                     'codigoCausas': codigoCausa})
 
     else:
-        return render(request, 'crear-datos.html', {'gravedades': gravedades,
+        return render(request, 'crear-datos.html', {'gravedades': gravedad,
                                                     'claseSiniestros': claseSinisestro,
                                                     'choques': choque,
                                                     'codigoLocalidades': codigoLocalidad,
