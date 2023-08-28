@@ -157,6 +157,7 @@ def crearDatos(request):
     sexo = Sexo.objects.all()
     claseVehiculo = ClaseVehiculo.objects.all()
     servicio = Servicio.objects.all()
+    enfuga = Enfuga.objects.all()
     codigoCausa = CodigoCausa.objects.all()
 
     if request.method == 'POST':
@@ -170,6 +171,7 @@ def crearDatos(request):
                                                     'sexos': sexo,
                                                     'claseVehiculos': claseVehiculo,
                                                     'servicios': servicio,
+                                                    'enfugas': enfuga,
                                                     'codigoCausas': codigoCausa})
 
     else:
@@ -183,6 +185,7 @@ def crearDatos(request):
                                                     'sexos': sexo,
                                                     'claseVehiculos': claseVehiculo,
                                                     'servicios': servicio,
+                                                    'enfugas': enfuga,
                                                     'codigoCausas': codigoCausa})
 
 

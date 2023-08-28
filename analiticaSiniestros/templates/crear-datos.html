@@ -65,6 +65,50 @@
                 </div>
 
                 <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Localidad</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example">
+                      {% for codigoLocalidad in codigoLocalidades %}
+                        <option value="{{ codigoLocalidad.idCodigoLocalidad }}">{{ codigoLocalidad.DescCodigoLocalidad }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Lugar</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example">
+                      {% for disenoLugar in disenoLugares %}
+                        <option value="{{ disenoLugar.idDisenoLugar }}">{{ disenoLugar.DescDisenoLugar }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Condicion</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example">
+                      {% for condicion in condiciones %}
+                        <option value="{{ condicion.idCondicion }}">{{ condicion.DescCondicion }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Estado</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example">
+                      {% for estado in estados %}
+                        <option value="{{ estado.idEstado }}">{{ estado.DescEstado }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
                   <label for="inputNumber" class="col-sm-2 col-form-label">Edad</label>
                   <div class="col-sm-10">
                     <input type="number" class="form-control">
@@ -72,16 +116,46 @@
                 </div>
 
                 <div class="row mb-3">
-                  <legend class="col-form-label col-sm-2 pt-0">En fuga</legend>
+                  <label class="col-sm-2 col-form-label">Sexo</label>
                   <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example">
+                      {% for sexo in sexos %}
+                        <option value="{{ sexo.idSexo }}">{{ sexo.DescSexo }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
 
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="gridCheck1">
-                      <label class="form-check-label" for="gridCheck1">
-                        ¿El actor vial se escapó del lugar del incidente?
-                      </label>
-                    </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Clase de Vahiculo</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example">
+                      {% for claseVehiculo in claseVehiculos %}
+                        <option value="{{ claseVehiculo.idClaseVehiculo }}">{{ claseVehiculo.DescClaseVehiculo }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
 
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">servicio</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example">
+                      {% for servicio in servicios %}
+                        <option value="{{ servicio.idServicio }}">{{ servicio.DescServicio }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">En fuga</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example">
+                      {% for enfuga in enfugas %}
+                        <option value="{{ enfuga.idEnfuga }}">{{ enfuga.DescEnfuga }}</option>
+                      {% endfor %}
+                    </select>
                   </div>
                 </div>
 
