@@ -9,5 +9,6 @@ urlpatterns = [
     path("verDatos", views.verDatos, name = 'verDatos'),
     path("crearDatos", views.crearDatos, name = 'crearDatos'),
     path("modificarDatos", views.modificarDatos, name = 'modificarDatos'),
-    path("eliminarDatos", views.eliminarDatos, name = 'eliminarDatos')
+    path("eliminarDatos", views.eliminarDatos, name = 'eliminarDatos'),
+    path("modificarDatosForm", views.modificarDatosForm, name = 'modificarDatosForm')
 ]

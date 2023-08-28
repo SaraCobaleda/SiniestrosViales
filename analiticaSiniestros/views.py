@@ -181,23 +181,23 @@ def crearDatos(request):
         fecha = datetime.strptime(fechaDato, "%Y-%m-%d")
         hora = datetime.strptime(horaDato, "%H:%M")
         fecha_hora = datetime.combine(fecha.date(), hora.time())
-        fecha_hora = timezone.make_aware(fecha_hora,  timezone=timezone.get_current_timezone())
+        fecha_hora = timezone.make_aware(
+            fecha_hora,  timezone=timezone.get_current_timezone())
 
-
-        siniestro = Siniestro(gravedad = gravedadDato, 
-                              claseSiniestro = claseSinisestroDato, 
-                              choque = choqueDato, 
-                              codigoLocalidad = codigoLocalidadDato,
-                              disenoLugar = disenoLugarDato,
-                              condicion = condicionDato,
-                              estado = estadoDato,
-                              edad = edadDato,
-                              sexo = sexoDato,
-                              claseVehiculo = claseVehiculoDato,
-                              servicio = servicioDato,
-                              enfuga = enfugaDato,
-                              codigoCausa = codigoCausaDato,
-                              fechaHora = fecha_hora)
+        siniestro = Siniestro(gravedad=gravedadDato,
+                              claseSiniestro=claseSinisestroDato,
+                              choque=choqueDato,
+                              codigoLocalidad=codigoLocalidadDato,
+                              disenoLugar=disenoLugarDato,
+                              condicion=condicionDato,
+                              estado=estadoDato,
+                              edad=edadDato,
+                              sexo=sexoDato,
+                              claseVehiculo=claseVehiculoDato,
+                              servicio=servicioDato,
+                              enfuga=enfugaDato,
+                              codigoCausa=codigoCausaDato,
+                              fechaHora=fecha_hora)
         siniestro.save()
 
         return render(request, 'crear-datos.html', {'gravedades': gravedad,
@@ -230,7 +230,91 @@ def crearDatos(request):
 
 @login_required
 def modificarDatos(request):
-    return render(request, 'actualizar-datos.html')
+    siniestro = Siniestro.objects.all()
+    print(request)
+    return render(request, 'actualizar-datos.html', {'siniestros': siniestro})
+
+
+@login_required
+def modificarDatosForm(request):
+    print(request)
+    gravedad = Gravedad.objects.all()
+    claseSinisestro = ClaseSiniestro.objects.all()
+    choque = Choque.objects.all()
+    codigoLocalidad = CodigoLocalidad.objects.all()
+    disenoLugar = DisenoLugar.objects.all()
+    condicion = Condicion.objects.all()
+    estado = Estado.objects.all()
+    sexo = Sexo.objects.all()
+    claseVehiculo = ClaseVehiculo.objects.all()
+    servicio = Servicio.objects.all()
+    enfuga = Enfuga.objects.all()
+    codigoCausa = CodigoCausa.objects.all()
+
+    if request.method == 'POST':
+        gravedadDato = request.POST.get('gravedadDato')
+        claseSinisestroDato = request.POST.get('claseSinisestroDato')
+        choqueDato = request.POST.get('choqueDato')
+        codigoLocalidadDato = request.POST.get('codigoLocalidadDato')
+        disenoLugarDato = request.POST.get('disenoLugarDato')
+        condicionDato = request.POST.get('condicionDato')
+        estadoDato = request.POST.get('estadoDato')
+        edadDato = request.POST.get('edadDato')
+        sexoDato = request.POST.get('sexoDato')
+        claseVehiculoDato = request.POST.get('claseVehiculoDato')
+        servicioDato = request.POST.get('servicioDato')
+        enfugaDato = request.POST.get('enfugaDato')
+        codigoCausaDato = request.POST.get('codigoCausaDato')
+        fechaDato = request.POST.get('fechaDato')
+        horaDato = request.POST.get('horaDato')
+        fecha = datetime.strptime(fechaDato, "%Y-%m-%d")
+        hora = datetime.strptime(horaDato, "%H:%M")
+        fecha_hora = datetime.combine(fecha.date(), hora.time())
+        fecha_hora = timezone.make_aware(
+            fecha_hora,  timezone=timezone.get_current_timezone())
+
+        siniestro = Siniestro(gravedad=gravedadDato,
+                              claseSiniestro=claseSinisestroDato,
+                              choque=choqueDato,
+                              codigoLocalidad=codigoLocalidadDato,
+                              disenoLugar=disenoLugarDato,
+                              condicion=condicionDato,
+                              estado=estadoDato,
+                              edad=edadDato,
+                              sexo=sexoDato,
+                              claseVehiculo=claseVehiculoDato,
+                              servicio=servicioDato,
+                              enfuga=enfugaDato,
+                              codigoCausa=codigoCausaDato,
+                              fechaHora=fecha_hora)
+        siniestro.save()
+
+        return render(request, 'actualizar-datos-form.html', {'gravedades': gravedad,
+                                                              'claseSiniestros': claseSinisestro,
+                                                              'choques': choque,
+                                                              'codigoLocalidades': codigoLocalidad,
+                                                              'disenoLugares': disenoLugar,
+                                                              'condiciones': condicion,
+                                                              'estados': estado,
+                                                              'sexos': sexo,
+                                                              'claseVehiculos': claseVehiculo,
+                                                              'servicios': servicio,
+                                                              'enfugas': enfuga,
+                                                              'codigoCausas': codigoCausa})
+
+    else:
+        return render(request, 'actualizar-datos-form.html', {'gravedades': gravedad,
+                                                              'claseSiniestros': claseSinisestro,
+                                                              'choques': choque,
+                                                              'codigoLocalidades': codigoLocalidad,
+                                                              'disenoLugares': disenoLugar,
+                                                              'condiciones': condicion,
+                                                              'estados': estado,
+                                                              'sexos': sexo,
+                                                              'claseVehiculos': claseVehiculo,
+                                                              'servicios': servicio,
+                                                              'enfugas': enfuga,
+                                                              'codigoCausas': codigoCausa})
 
 
 @login_required
