@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 
@@ -14,30 +14,32 @@ import pandas as pd
 
 # Create your views here.
 
-
 @login_required
 def index(request):
+
+    #total de registros (accidentes registrados)
+    cantidad_siniestros = Siniestro.objects.count()
+
+    #registros mas recientes
     registros_mas_recientes = Siniestro.objects.order_by('-fechaHora')[:100]
 
+    #variables
     fechaHora = [registro.fechaHora for registro in registros_mas_recientes]
     fechaHora = np.array(list(fechaHora))
 
     gravedad = [registro.gravedad for registro in registros_mas_recientes]
     gravedad = np.array(list(gravedad))
 
-    claseSiniestro = [
-        registro.claseSiniestro for registro in registros_mas_recientes]
+    claseSiniestro = [registro.claseSiniestro for registro in registros_mas_recientes]
     claseSiniestro = np.array(list(claseSiniestro))
 
     choque = [registro.choque for registro in registros_mas_recientes]
     choque = np.array(list(claseSiniestro))
 
-    codigoLocalidad = [
-        registro.codigoLocalidad for registro in registros_mas_recientes]
+    codigoLocalidad = [registro.codigoLocalidad for registro in registros_mas_recientes]
     codigoLocalidad = np.array(list(claseSiniestro))
 
-    disenoLugar = [
-        registro.disenoLugar for registro in registros_mas_recientes]
+    disenoLugar = [registro.disenoLugar for registro in registros_mas_recientes]
     disenoLugar = np.array(list(claseSiniestro))
 
     condicion = [registro.condicion for registro in registros_mas_recientes]
@@ -52,8 +54,7 @@ def index(request):
     sexo = [registro.sexo for registro in registros_mas_recientes]
     sexo = np.array(list(claseSiniestro))
 
-    claseVehiculo = [
-        registro.claseVehiculo for registro in registros_mas_recientes]
+    claseVehiculo = [registro.claseVehiculo for registro in registros_mas_recientes]
     claseVehiculo = np.array(list(claseSiniestro))
 
     servicio = [registro.servicio for registro in registros_mas_recientes]
@@ -62,19 +63,34 @@ def index(request):
     enfuga = [registro.enfuga for registro in registros_mas_recientes]
     enfuga = np.array(list(claseSiniestro))
 
-    codigoCausa = [
-        registro.codigoCausa for registro in registros_mas_recientes]
+    codigoCausa = [registro.codigoCausa for registro in registros_mas_recientes]
     codigoCausa = np.array(list(claseSiniestro))
 
+    #causas mas comunes de accidentes
+    valores_unicos, conteos = np.unique(codigoCausa, return_counts=True)
+    diccionario_frecuencias = dict(zip(valores_unicos, conteos))
+    valores_mas_comunes = sorted(diccionario_frecuencias.items(), key=lambda x: x[1], reverse=True)
+    top_5_valores_comunes = np.array([valor for valor, frecuencia in valores_mas_comunes[:5]])
+    top_5_causas_comunes = np.array([])
+
+    for top in top_5_valores_comunes:
+        if top != 0:
+            registro = get_object_or_404(CodigoCausa, pk=int(top))
+            top_5_causas_comunes = np.append(top_5_causas_comunes, registro)
+
+    #graficos de dispersion
     df = pd.DataFrame({'Fecha': fechaHora, 'gravedad': gravedad,
                       "choque": choque, "condicion": condicion})
 
+    #graficos de dispersion gravedad
     fig = px.scatter(df, x='Fecha', y='gravedad')
     plot_div = fig.to_html(full_html=False, include_plotlyjs=True)
 
+    #graficos de dispersion choque
     fig2 = px.scatter(df, x='Fecha', y='choque')
     plot_div2 = fig2.to_html(full_html=False, include_plotlyjs=True)
 
+    #grafico de torta para sexo
     hombre = 0
     mujer = 0
 
@@ -88,17 +104,55 @@ def index(request):
 
     piefig = px.pie(values=list(datos_pastel.values()),
                     names=list(datos_pastel.keys()))
-    plot_div3 = piefig.to_html(full_html=False, include_plotlyjs=True)
+    piefig = piefig.to_html(full_html=False, include_plotlyjs=True)
 
+    #condicion grafico de dispersion
     fig4 = px.scatter(df, x='Fecha', y='condicion')
-    plot_div4 = fig2.to_html(full_html=False, include_plotlyjs=True)
+    plot_div4 = fig4.to_html(full_html=False, include_plotlyjs=True)
 
-    datos = Siniestro.objects.all()
-    print(datos)
-    return render(request, 'index.html', {'plot_div': plot_div,
+    cantidad_muertos = 0
+    cantidad_lesionados = 0
+
+    for condicion in estado:
+        if condicion == 1:
+            cantidad_muertos = cantidad_muertos + 1
+        elif condicion == 2:
+            cantidad_lesionados = cantidad_lesionados + 1
+
+    #grafico de barras para la gravedad
+    gravedad = df['gravedad']
+
+    NI = 0
+    leve = 0
+    medio = 0
+    grave = 0
+
+    for i in gravedad:
+        if i == 0:
+            NI = NI + 1
+        elif i == 1:
+            grave = grave + 1
+        elif i == 2:
+            medio = medio + 1
+        else:
+            leve = leve + 1
+
+    valores_gravedad = [grave, leve, medio]
+    categorias_gravedad = ['Con Muertos', 'Con Heridos', 'Solo Daños']
+    fig = px.pie(values=valores_gravedad,
+                    names=categorias_gravedad)
+    fig = fig.to_html(full_html=False, include_plotlyjs=True)
+
+    return render(request, 'index.html', {'cantidad_siniestros':cantidad_siniestros,
+                                          'cantidad_muertos':cantidad_muertos,
+                                          'cantidad_lesionados':cantidad_lesionados,
+                                          'valores_mas_comunes':valores_mas_comunes,
+                                          'top_5_causas_comunes':top_5_causas_comunes,
+                                          'plot_div': plot_div,
                                           'plot_div2': plot_div2,
-                                          'plot_div3': plot_div3,
-                                          'plot_div4': plot_div4})
+                                          'plot_div3': piefig,
+                                          'plot_div4': plot_div4,
+                                          'plot_div5': fig,})
 
 
 @login_required
