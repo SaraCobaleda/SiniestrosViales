@@ -373,4 +373,18 @@ def modificarDatosForm(request):
 
 @login_required
 def eliminarDatos(request):
-    return render(request, 'borrar-datos.html')
+    if request.method == 'POST':
+
+        fecha_seleccionada = request.POST.get("eliminar_fecha")
+
+        try:
+            siniestro = Siniestro.objects.get(id=fecha_seleccionada)
+            siniestro.delete()
+        except Siniestro.DoesNotExist:
+            print("no es posible eliminar el registro")
+
+        siniestro = Siniestro.objects.all()
+        return render(request, 'borrar-datos.html', {'siniestros': siniestro})
+    else:
+        siniestro = Siniestro.objects.all()
+        return render(request, 'borrar-datos.html', {'siniestros': siniestro})
