@@ -30,20 +30,25 @@
               Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
               Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
               <div class="card-body">
-                <table class="table">
-                  <thead>
-                      <tr>
-                        <th>fechaHora</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                    {% for siniestro in siniestros %}
-                      <tr>
-                        <td><a href="{% url 'modificarDatosForm' %}">{{ siniestro.fechaHora }}</a></td>
-                      </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
+                <form method="POST" action="{% url 'modificarDatos' %}">
+                  {% csrf_token %}
+                  <table class="table">
+                    <thead>
+                        <tr>
+                          <th>Fecha y Hora</th>
+                          <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      {% for siniestro in siniestros %}
+                        <tr>
+                          <td>{{ siniestro.fechaHora }}</td>
+                          <td><button type="submit" class="btn btn-primary" name="modificar_dato" value='{{ siniestro.id }}'>Modificar</button></td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </form>
               </div>
             </div>
             <div class="card-footer">

@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 
@@ -284,10 +284,20 @@ def crearDatos(request):
 
 @login_required
 def modificarDatos(request):
-    siniestro = Siniestro.objects.all()
-    print(request)
-    return render(request, 'actualizar-datos.html', {'siniestros': siniestro})
+    if request.method == 'POST':
 
+        fecha_seleccionada = request.POST.get("modificar_dato")
+        print(fecha_seleccionada)
+
+        try:
+            siniestro = Siniestro.objects.get(id=fecha_seleccionada)
+        except Siniestro.DoesNotExist:
+            print("no es posible modificar el registro")
+
+        return redirect(modificarDatosForm)
+    else:
+        siniestro = Siniestro.objects.all()
+        return render(request, 'actualizar-datos.html', {'siniestros': siniestro})
 
 @login_required
 def modificarDatosForm(request):
