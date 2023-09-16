@@ -235,8 +235,7 @@ def crearDatos(request):
         fecha = datetime.strptime(fechaDato, "%Y-%m-%d")
         hora = datetime.strptime(horaDato, "%H:%M")
         fecha_hora = datetime.combine(fecha.date(), hora.time())
-        fecha_hora = timezone.make_aware(
-            fecha_hora,  timezone=timezone.get_current_timezone())
+        fecha_hora = timezone.make_aware(fecha_hora,  timezone=timezone.get_current_timezone())
 
         siniestro = Siniestro(gravedad=gravedadDato,
                               claseSiniestro=claseSinisestroDato,
@@ -284,24 +283,7 @@ def crearDatos(request):
 
 @login_required
 def modificarDatos(request):
-    if request.method == 'POST':
 
-        fecha_seleccionada = request.POST.get("modificar_dato")
-        print(fecha_seleccionada)
-
-        try:
-            siniestro = Siniestro.objects.get(id=fecha_seleccionada)
-        except Siniestro.DoesNotExist:
-            print("no es posible modificar el registro")
-
-        return redirect(modificarDatosForm)
-    else:
-        siniestro = Siniestro.objects.all()
-        return render(request, 'actualizar-datos.html', {'siniestros': siniestro})
-
-@login_required
-def modificarDatosForm(request):
-    print(request)
     gravedad = Gravedad.objects.all()
     claseSinisestro = ClaseSiniestro.objects.all()
     choque = Choque.objects.all()
@@ -316,6 +298,44 @@ def modificarDatosForm(request):
     codigoCausa = CodigoCausa.objects.all()
 
     if request.method == 'POST':
+
+        fecha_seleccionada = request.POST.get("modificar_dato")
+
+        try:
+            siniestro_escogido = Siniestro.objects.get(id=fecha_seleccionada)
+        except Siniestro.DoesNotExist:
+            print("no es posible modificar el registro")
+
+        siniestro_escogido = siniestro_escogido.id
+
+        return render(request, 'actualizar-datos-form.html', {"variable" : siniestro_escogido,
+                                                              'gravedades': gravedad,
+                                                              'claseSiniestros': claseSinisestro,
+                                                              'choques': choque,
+                                                              'codigoLocalidades': codigoLocalidad,
+                                                              'disenoLugares': disenoLugar,
+                                                              'condiciones': condicion,
+                                                              'estados': estado,
+                                                              'sexos': sexo,
+                                                              'claseVehiculos': claseVehiculo,
+                                                              'servicios': servicio,
+                                                              'enfugas': enfuga,
+                                                              'codigoCausas': codigoCausa})
+    else:
+        siniestro = Siniestro.objects.all()
+        return render(request, 'actualizar-datos.html', {'siniestros': siniestro})
+
+@login_required
+def modificarDatosForm(request):
+    if request.method == 'POST':
+
+        siniestro_escogido = request.POST.get('variable')
+
+        try:
+            siniestro_escogido = Siniestro.objects.get(id=siniestro_escogido)
+        except Siniestro.DoesNotExist:
+            print("no es posible modificar el registro")
+
         gravedadDato = request.POST.get('gravedadDato')
         claseSinisestroDato = request.POST.get('claseSinisestroDato')
         choqueDato = request.POST.get('choqueDato')
@@ -334,8 +354,7 @@ def modificarDatosForm(request):
         fecha = datetime.strptime(fechaDato, "%Y-%m-%d")
         hora = datetime.strptime(horaDato, "%H:%M")
         fecha_hora = datetime.combine(fecha.date(), hora.time())
-        fecha_hora = timezone.make_aware(
-            fecha_hora,  timezone=timezone.get_current_timezone())
+        fecha_hora = timezone.make_aware(fecha_hora,  timezone=timezone.get_current_timezone())
 
         siniestro = Siniestro(gravedad=gravedadDato,
                               claseSiniestro=claseSinisestroDato,
@@ -351,34 +370,27 @@ def modificarDatosForm(request):
                               enfuga=enfugaDato,
                               codigoCausa=codigoCausaDato,
                               fechaHora=fecha_hora)
-        siniestro.save()
+        
+        siniestro_escogido.gravedad = siniestro.gravedad
+        siniestro_escogido.claseSiniestro = siniestro.claseSiniestro
+        siniestro_escogido.choque = siniestro.choque
+        siniestro_escogido.codigoLocalidad = siniestro.codigoLocalidad
+        siniestro_escogido.disenoLugar = siniestro.disenoLugar
+        siniestro_escogido.condicion = siniestro.condicion
+        siniestro_escogido.estado = siniestro.estado
+        siniestro_escogido.edad = siniestro.edad
+        siniestro_escogido.sexo = siniestro.sexo
+        siniestro_escogido.claseVehiculo = siniestro.claseVehiculo
+        siniestro_escogido.servicio = siniestro.servicio
+        siniestro_escogido.enfuga = siniestro.enfuga
+        siniestro_escogido.codigoCausa = siniestro.codigoCausa
+        siniestro_escogido.fechaHora = siniestro.fechaHora
+        siniestro_escogido.save()
 
-        return render(request, 'actualizar-datos-form.html', {'gravedades': gravedad,
-                                                              'claseSiniestros': claseSinisestro,
-                                                              'choques': choque,
-                                                              'codigoLocalidades': codigoLocalidad,
-                                                              'disenoLugares': disenoLugar,
-                                                              'condiciones': condicion,
-                                                              'estados': estado,
-                                                              'sexos': sexo,
-                                                              'claseVehiculos': claseVehiculo,
-                                                              'servicios': servicio,
-                                                              'enfugas': enfuga,
-                                                              'codigoCausas': codigoCausa})
+        return redirect(modificarDatos)
 
     else:
-        return render(request, 'actualizar-datos-form.html', {'gravedades': gravedad,
-                                                              'claseSiniestros': claseSinisestro,
-                                                              'choques': choque,
-                                                              'codigoLocalidades': codigoLocalidad,
-                                                              'disenoLugares': disenoLugar,
-                                                              'condiciones': condicion,
-                                                              'estados': estado,
-                                                              'sexos': sexo,
-                                                              'claseVehiculos': claseVehiculo,
-                                                              'servicios': servicio,
-                                                              'enfugas': enfuga,
-                                                              'codigoCausas': codigoCausa})
+        return redirect(modificarDatos)
 
 
 @login_required
