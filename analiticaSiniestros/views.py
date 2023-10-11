@@ -495,5 +495,13 @@ def RandomForestClassifierEstado(request):
     return render(request, 'Random-Forest-ClassifierEstado.html')
 
 @login_required
-def LogisticRegression(request):
-    return render(request, 'Logistic-Regression.html')
+def LogisticRegressionGravedad(request):
+    return render(request, 'Logistic-RegressionGravedad.html')
+
+@login_required
+def LogisticRegressionClaseSiniestro(request):
+    return render(request, 'Logistic-RegressionClaseSiniestro.html')
+
+@login_required
+def LogisticRegressionEstado(request):
+    return render(request, 'Logistic-RegressionEstado.html')

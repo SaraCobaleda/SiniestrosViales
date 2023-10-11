@@ -20,5 +20,7 @@ urlpatterns = [
     path("RandomForestClassifierClaseSiniestro/", views.RandomForestClassifierClaseSiniestro, name = 'RandomForestClassifierClaseSiniestro'),
     path("RandomForestClassifierEstado/", views.RandomForestClassifierEstado, name = 'RandomForestClassifierEstado'),
     #LogisticRegression
-    path("LogisticRegression/", views.LogisticRegression, name = 'LogisticRegression')
+    path("LogisticRegressionGravedad/", views.LogisticRegressionGravedad, name = 'LogisticRegressionGravedad'),
+    path("LogisticRegressionClaseSiniestro/", views.LogisticRegressionClaseSiniestro, name = 'LogisticRegressionClaseSiniestro'),
+    path("LogisticRegressionEstado/", views.LogisticRegressionEstado, name = 'LogisticRegressionEstado')
 ]
