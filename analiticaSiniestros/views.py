@@ -11,8 +11,22 @@ from analiticaSiniestros.models import *
 
 import numpy as np
 import pandas as pd
+import joblib
 
 # Create your views here.
+gravedad = Gravedad.objects.all()
+claseSinisestro = ClaseSiniestro.objects.all()
+choque = Choque.objects.all()
+codigoLocalidad = CodigoLocalidad.objects.all()
+disenoLugar = DisenoLugar.objects.all()
+condicion = Condicion.objects.all()
+estado = Estado.objects.all()
+edad = Siniestro.objects.values_list('edad', flat=True).distinct()
+sexo = Sexo.objects.all()
+claseVehiculo = ClaseVehiculo.objects.all()
+servicio = Servicio.objects.all()
+enfuga = Enfuga.objects.all()
+codigoCausa = CodigoCausa.objects.all()
 
 @login_required
 def index(request):
@@ -157,20 +171,7 @@ def index(request):
 
 @login_required
 def diccionario(request):
-    gravedades = Gravedad.objects.all()
-    claseSinisestro = ClaseSiniestro.objects.all()
-    choque = Choque.objects.all()
-    codigoLocalidad = CodigoLocalidad.objects.all()
-    disenoLugar = DisenoLugar.objects.all()
-    condicion = Condicion.objects.all()
-    estado = Estado.objects.all()
-    edad = Siniestro.objects.values_list('edad', flat=True).distinct()
-    sexo = Sexo.objects.all()
-    claseVehiculo = ClaseVehiculo.objects.all()
-    servicio = Servicio.objects.all()
-    enfuga = Enfuga.objects.all()
-    codigoCausa = CodigoCausa.objects.all()
-    return render(request, 'diccionario.html', {'gravedades': gravedades,
+    return render(request, 'diccionario.html', {'gravedades': gravedad,
                                                 'claseSiniestros': claseSinisestro,
                                                 'choques': choque,
                                                 'codigoLocalidades': codigoLocalidad,
@@ -203,18 +204,6 @@ def basicQuestions(request):
 
 @login_required
 def crearDatos(request):
-    gravedad = Gravedad.objects.all()
-    claseSinisestro = ClaseSiniestro.objects.all()
-    choque = Choque.objects.all()
-    codigoLocalidad = CodigoLocalidad.objects.all()
-    disenoLugar = DisenoLugar.objects.all()
-    condicion = Condicion.objects.all()
-    estado = Estado.objects.all()
-    sexo = Sexo.objects.all()
-    claseVehiculo = ClaseVehiculo.objects.all()
-    servicio = Servicio.objects.all()
-    enfuga = Enfuga.objects.all()
-    codigoCausa = CodigoCausa.objects.all()
 
     if request.method == 'POST':
         gravedadDato = request.POST.get('gravedadDato')
@@ -283,19 +272,6 @@ def crearDatos(request):
 
 @login_required
 def modificarDatos(request):
-
-    gravedad = Gravedad.objects.all()
-    claseSinisestro = ClaseSiniestro.objects.all()
-    choque = Choque.objects.all()
-    codigoLocalidad = CodigoLocalidad.objects.all()
-    disenoLugar = DisenoLugar.objects.all()
-    condicion = Condicion.objects.all()
-    estado = Estado.objects.all()
-    sexo = Sexo.objects.all()
-    claseVehiculo = ClaseVehiculo.objects.all()
-    servicio = Servicio.objects.all()
-    enfuga = Enfuga.objects.all()
-    codigoCausa = CodigoCausa.objects.all()
 
     if request.method == 'POST':
 
@@ -410,3 +386,114 @@ def eliminarDatos(request):
     else:
         siniestro = Siniestro.objects.all()
         return render(request, 'borrar-datos.html', {'siniestros': siniestro})
+
+@login_required
+def KNearestNeighborsGravedad(request):
+
+    knn_model = joblib.load('analiticaSiniestros\static\Modelos Clasificacion\knn_model_GRAVEDAD.pkl')
+
+    if request.method == 'POST':
+
+        claseSinisestroDato = request.POST.get('claseSinisestroDato')
+        choqueDato = request.POST.get('choqueDato')
+        codigoLocalidadDato = request.POST.get('codigoLocalidadDato')
+        disenoLugarDato = request.POST.get('disenoLugarDato')
+        condicionDato = request.POST.get('condicionDato')
+        estadoDato = request.POST.get('estadoDato')
+        edadDato = request.POST.get('edadDato')
+        sexoDato = request.POST.get('sexoDato')
+        claseVehiculoDato = request.POST.get('claseVehiculoDato')
+        servicioDato = request.POST.get('servicioDato')
+        enfugaDato = request.POST.get('enfugaDato')
+        codigoCausaDato = request.POST.get('codigoCausaDato')
+        fechaDato = request.POST.get('fechaDato')
+        horaDato = request.POST.get('horaDato')
+        fecha = datetime.strptime(fechaDato, "%Y-%m-%d")
+        hora = datetime.strptime(horaDato, "%H:%M")
+        fecha_hora = datetime.combine(fecha.date(), hora.time())
+        fecha_hora = timezone.make_aware(fecha_hora, timezone=timezone.get_current_timezone())
+
+        data = np.array([[int(claseSinisestroDato), 
+                          int(choqueDato), 
+                          int(codigoLocalidadDato), 
+                          int(disenoLugarDato), 
+                          int(condicionDato), 
+                          int(estadoDato), 
+                          int(edadDato), 
+                          int(sexoDato), 
+                          int(claseVehiculoDato), 
+                          int(servicioDato), 
+                          int(enfugaDato), 
+                          int(codigoCausaDato)]])
+        pred =  knn_model.predict(data)
+
+        pred = int(pred)
+
+        return render(request, 'K-NearestNeighborsGravedad.html', {'claseSiniestros': claseSinisestro,
+                                                                    'choques': choque,
+                                                                    'codigoLocalidades': codigoLocalidad,
+                                                                    'disenoLugares': disenoLugar,
+                                                                    'condiciones': condicion,
+                                                                    'estados': estado,
+                                                                    'sexos': sexo,
+                                                                    'claseVehiculos': claseVehiculo,
+                                                                    'servicios': servicio,
+                                                                    'enfugas': enfuga,
+                                                                    'codigoCausas': codigoCausa,
+                                                                    'prediccion': pred})
+    else:
+        siniestro = Siniestro.objects.all()
+        return render(request, 'K-NearestNeighborsGravedad.html', {'claseSiniestros': claseSinisestro,
+                                                                    'choques': choque,
+                                                                    'codigoLocalidades': codigoLocalidad,
+                                                                    'disenoLugares': disenoLugar,
+                                                                    'condiciones': condicion,
+                                                                    'estados': estado,
+                                                                    'sexos': sexo,
+                                                                    'claseVehiculos': claseVehiculo,
+                                                                    'servicios': servicio,
+                                                                    'enfugas': enfuga,
+                                                                    'codigoCausas': codigoCausa})
+    
+@login_required
+def KNearestNeighborsClaseSiniestro(request):
+    return render(request, 'K-NearestNeighborsClaseSiniestro.html',{'gravedades': gravedad,
+                                                                    'choques': choque,
+                                                                    'codigoLocalidades': codigoLocalidad,
+                                                                    'disenoLugares': disenoLugar,
+                                                                    'condiciones': condicion,
+                                                                    'estados': estado,
+                                                                    'sexos': sexo,
+                                                                    'claseVehiculos': claseVehiculo,
+                                                                    'servicios': servicio,
+                                                                    'enfugas': enfuga,
+                                                                    'codigoCausas': codigoCausa})
+
+@login_required
+def KNearestNeighborsEstado(request):
+    return render(request, 'K-NearestNeighborsEstado.html',{'gravedades': gravedad,
+                                                                    'choques': choque,
+                                                                    'codigoLocalidades': codigoLocalidad,
+                                                                    'disenoLugares': disenoLugar,
+                                                                    'condiciones': condicion,
+                                                                    'sexos': sexo,
+                                                                    'claseVehiculos': claseVehiculo,
+                                                                    'servicios': servicio,
+                                                                    'enfugas': enfuga,
+                                                                    'codigoCausas': codigoCausa})
+
+@login_required
+def RandomForestClassifierGravedad(request):
+    return render(request, 'Random-Forest-ClassifierGravedad.html')
+
+@login_required
+def RandomForestClassifierClaseSiniestro(request):
+    return render(request, 'Random-Forest-ClassifierClaseSiniestro.html')
+
+@login_required
+def RandomForestClassifierEstado(request):
+    return render(request, 'Random-Forest-ClassifierEstado.html')
+
+@login_required
+def LogisticRegression(request):
+    return render(request, 'Logistic-Regression.html')

@@ -10,5 +10,15 @@ urlpatterns = [
     path("crearDatos/", views.crearDatos, name = 'crearDatos'),
     path("modificarDatos/", views.modificarDatos, name = 'modificarDatos'),
     path("eliminarDatos/", views.eliminarDatos, name = 'eliminarDatos'),
-    path("modificarDatosForm/", views.modificarDatosForm, name = 'modificarDatosForm')
+    #KNearestNeighbors
+    path("modificarDatosForm/", views.modificarDatosForm, name = 'modificarDatosForm'),
+    path("KNearestNeighborsGravedad/", views.KNearestNeighborsGravedad, name = 'KNearestNeighborsGravedad'),
+    path("KNearestNeighborsClaseSiniestro/", views.KNearestNeighborsClaseSiniestro, name = 'KNearestNeighborsClaseSiniestro'),
+    path("KNearestNeighborsEstado/", views.KNearestNeighborsEstado, name = 'KNearestNeighborsEstado'),
+    #RandomForestClassifier
+    path("RandomForestClassifierGravedad/", views.RandomForestClassifierGravedad, name = 'RandomForestClassifierGravedad'),
+    path("RandomForestClassifierClaseSiniestro/", views.RandomForestClassifierClaseSiniestro, name = 'RandomForestClassifierClaseSiniestro'),
+    path("RandomForestClassifierEstado/", views.RandomForestClassifierEstado, name = 'RandomForestClassifierEstado'),
+    #LogisticRegression
+    path("LogisticRegression/", views.LogisticRegression, name = 'LogisticRegression')
 ]

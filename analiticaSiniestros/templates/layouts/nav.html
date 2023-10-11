@@ -174,22 +174,69 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-bar-chart"></i><span>Modelos de los Datos</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-bar-chart"></i><span>K-Nearest Neighbors</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="charts-chartjs.html">
-                            <i class="bi bi-circle"></i><span>K-Nearest Neighbors</span>
+                        <a href="{% url 'KNearestNeighborsGravedad' %}">
+                            <i class="bi bi-circle"></i><span>Gravedad</span>
                         </a>
                     </li>
                     <li>
-                        <a href="charts-apexcharts.html">
-                            <i class="bi bi-circle"></i><span>Random Forest Classifier</span>
+                        <a href="{% url 'KNearestNeighborsClaseSiniestro' %}">
+                            <i class="bi bi-circle"></i><span>Clase Siniestro</span>
                         </a>
                     </li>
                     <li>
-                        <a href="charts-echarts.html">
-                            <i class="bi bi-circle"></i><span>Logistic Regression</span>
+                        <a href="{% url 'KNearestNeighborsEstado' %}">
+                            <i class="bi bi-circle"></i><span>Estado</span>
+                        </a>
+                    </li>
+                    </li>
+                </ul>
+            </li><!-- End Charts Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-bar-chart"></i><span>Logistic Regression</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="{% url 'KNearestNeighborsGravedad' %}">
+                            <i class="bi bi-circle"></i><span>Gravedad</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'KNearestNeighborsClaseSiniestro' %}">
+                            <i class="bi bi-circle"></i><span>Clase Siniestro</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'KNearestNeighborsEstado' %}">
+                            <i class="bi bi-circle"></i><span>Estado</span>
+                        </a>
+                    </li>
+                </ul>
+            </li><!-- End Charts Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-bar-chart"></i><span>Random Forest Classifier</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="{% url 'RandomForestClassifierGravedad' %}">
+                            <i class="bi bi-circle"></i><span>Gravedad</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'RandomForestClassifierClaseSiniestro' %}">
+                            <i class="bi bi-circle"></i><span>Clase Siniestro</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'RandomForestClassifierEstado' %}">
+                            <i class="bi bi-circle"></i><span>Estado</span>
                         </a>
                     </li>
                 </ul>
