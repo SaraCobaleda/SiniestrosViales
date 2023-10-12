@@ -78,10 +78,10 @@ WSGI_APPLICATION = "SiniestrosViales.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "siniestrosbogotadb",
+        "NAME": "postgres",
         "USER": "postgres",
         "PASSWORD": "4DBUe8J623cX4n",
-        "HOST": "localhost",
+        "HOST": "database-siniestros.c2d0dhv8axyo.us-east-2.rds.amazonaws.com",
         "PORT": "5432"
     }
 }
