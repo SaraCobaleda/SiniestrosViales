@@ -390,7 +390,7 @@ def eliminarDatos(request):
 @login_required
 def KNearestNeighborsGravedad(request):
 
-    knn_model = joblib.load('analiticaSiniestros\static\Modelos Clasificacion\knn_model_GRAVEDAD.pkl')
+    knn_model = joblib.load(r'analiticaSiniestros\static\Modelos Clasificacion\knn_model_GRAVEDAD.pkl')
 
     if request.method == 'POST':
 
@@ -457,7 +457,195 @@ def KNearestNeighborsGravedad(request):
     
 @login_required
 def KNearestNeighborsClaseSiniestro(request):
-    return render(request, 'K-NearestNeighborsClaseSiniestro.html',{'gravedades': gravedad,
+
+    knn_model = joblib.load(r'analiticaSiniestros\static\Modelos Clasificacion\knn_model_CLASE_SINIESTRO.pkl')
+
+    if request.method == 'POST':
+
+        gravedadDato = request.POST.get('gravedadDato')
+        choqueDato = request.POST.get('choqueDato')
+        codigoLocalidadDato = request.POST.get('codigoLocalidadDato')
+        disenoLugarDato = request.POST.get('disenoLugarDato')
+        condicionDato = request.POST.get('condicionDato')
+        estadoDato = request.POST.get('estadoDato')
+        edadDato = request.POST.get('edadDato')
+        sexoDato = request.POST.get('sexoDato')
+        claseVehiculoDato = request.POST.get('claseVehiculoDato')
+        servicioDato = request.POST.get('servicioDato')
+        enfugaDato = request.POST.get('enfugaDato')
+        codigoCausaDato = request.POST.get('codigoCausaDato')
+        fechaDato = request.POST.get('fechaDato')
+        horaDato = request.POST.get('horaDato')
+        fecha = datetime.strptime(fechaDato, "%Y-%m-%d")
+        hora = datetime.strptime(horaDato, "%H:%M")
+        fecha_hora = datetime.combine(fecha.date(), hora.time())
+        fecha_hora = timezone.make_aware(fecha_hora, timezone=timezone.get_current_timezone())
+
+        data = np.array([[int(gravedadDato), 
+                          int(choqueDato), 
+                          int(codigoLocalidadDato), 
+                          int(disenoLugarDato), 
+                          int(condicionDato), 
+                          int(estadoDato), 
+                          int(edadDato), 
+                          int(sexoDato), 
+                          int(claseVehiculoDato), 
+                          int(servicioDato), 
+                          int(enfugaDato), 
+                          int(codigoCausaDato)]])
+        pred =  knn_model.predict(data)
+
+        pred = int(pred)
+        return render(request, 'K-NearestNeighborsClaseSiniestro.html',{'gravedades': gravedad,
+                                                                        'choques': choque,
+                                                                        'codigoLocalidades': codigoLocalidad,
+                                                                        'disenoLugares': disenoLugar,
+                                                                        'condiciones': condicion,
+                                                                        'estados': estado,
+                                                                        'sexos': sexo,
+                                                                        'claseVehiculos': claseVehiculo,
+                                                                        'servicios': servicio,
+                                                                        'enfugas': enfuga,
+                                                                        'codigoCausas': codigoCausa,
+                                                                        'prediccion': pred})
+    else:
+        return render(request, 'K-NearestNeighborsClaseSiniestro.html',{'gravedades': gravedad,
+                                                                        'choques': choque,
+                                                                        'codigoLocalidades': codigoLocalidad,
+                                                                        'disenoLugares': disenoLugar,
+                                                                        'condiciones': condicion,
+                                                                        'estados': estado,
+                                                                        'sexos': sexo,
+                                                                        'claseVehiculos': claseVehiculo,
+                                                                        'servicios': servicio,
+                                                                        'enfugas': enfuga,
+                                                                        'codigoCausas': codigoCausa})
+
+@login_required
+def KNearestNeighborsEstado(request):
+
+    knn_model = joblib.load(r'analiticaSiniestros\static\Modelos Clasificacion\knn_model_ESTADO.pkl')
+
+    if request.method == 'POST':
+
+        gravedadDato = request.POST.get('gravedadDato')
+        claseSinisestroDato = request.POST.get('claseSinisestroDato')
+        choqueDato = request.POST.get('choqueDato')
+        codigoLocalidadDato = request.POST.get('codigoLocalidadDato')
+        disenoLugarDato = request.POST.get('disenoLugarDato')
+        condicionDato = request.POST.get('condicionDato')
+        edadDato = request.POST.get('edadDato')
+        sexoDato = request.POST.get('sexoDato')
+        claseVehiculoDato = request.POST.get('claseVehiculoDato')
+        servicioDato = request.POST.get('servicioDato')
+        enfugaDato = request.POST.get('enfugaDato')
+        codigoCausaDato = request.POST.get('codigoCausaDato')
+        fechaDato = request.POST.get('fechaDato')
+        horaDato = request.POST.get('horaDato')
+        fecha = datetime.strptime(fechaDato, "%Y-%m-%d")
+        hora = datetime.strptime(horaDato, "%H:%M")
+        fecha_hora = datetime.combine(fecha.date(), hora.time())
+        fecha_hora = timezone.make_aware(fecha_hora, timezone=timezone.get_current_timezone())
+
+        data = np.array([[int(gravedadDato),
+                          int(claseSinisestroDato), 
+                          int(choqueDato), 
+                          int(codigoLocalidadDato), 
+                          int(disenoLugarDato), 
+                          int(condicionDato), 
+                          int(edadDato), 
+                          int(sexoDato), 
+                          int(claseVehiculoDato), 
+                          int(servicioDato), 
+                          int(enfugaDato), 
+                          int(codigoCausaDato)]])
+        pred =  knn_model.predict(data)
+
+        pred = int(pred)
+
+        return render(request, 'K-NearestNeighborsEstado.html',{'gravedades': gravedad,
+                                                                'claseSiniestros': claseSinisestro,
+                                                                'choques': choque,
+                                                                'codigoLocalidades': codigoLocalidad,
+                                                                'disenoLugares': disenoLugar,
+                                                                'condiciones': condicion,
+                                                                'sexos': sexo,
+                                                                'claseVehiculos': claseVehiculo,
+                                                                'servicios': servicio,
+                                                                'enfugas': enfuga,
+                                                                'codigoCausas': codigoCausa,
+                                                                'codigoCausas': codigoCausa,
+                                                                'prediccion': pred})
+    else:
+        return render(request, 'K-NearestNeighborsEstado.html',{'gravedades': gravedad,
+                                                                'claseSiniestros': claseSinisestro,
+                                                                'choques': choque,
+                                                                'codigoLocalidades': codigoLocalidad,
+                                                                'disenoLugares': disenoLugar,
+                                                                'condiciones': condicion,
+                                                                'sexos': sexo,
+                                                                'claseVehiculos': claseVehiculo,
+                                                                'servicios': servicio,
+                                                                'enfugas': enfuga,
+                                                                'codigoCausas': codigoCausa})
+
+@login_required
+def RandomForestClassifierGravedad(request):
+
+    rf_model = joblib.load(r'analiticaSiniestros\static\Modelos Clasificacion\rf_model_GRAVEDAD.pkl')
+
+    if request.method == 'POST':
+
+        claseSinisestroDato = request.POST.get('claseSinisestroDato')
+        choqueDato = request.POST.get('choqueDato')
+        codigoLocalidadDato = request.POST.get('codigoLocalidadDato')
+        disenoLugarDato = request.POST.get('disenoLugarDato')
+        condicionDato = request.POST.get('condicionDato')
+        estadoDato = request.POST.get('estadoDato')
+        edadDato = request.POST.get('edadDato')
+        sexoDato = request.POST.get('sexoDato')
+        claseVehiculoDato = request.POST.get('claseVehiculoDato')
+        servicioDato = request.POST.get('servicioDato')
+        enfugaDato = request.POST.get('enfugaDato')
+        codigoCausaDato = request.POST.get('codigoCausaDato')
+        fechaDato = request.POST.get('fechaDato')
+        horaDato = request.POST.get('horaDato')
+        fecha = datetime.strptime(fechaDato, "%Y-%m-%d")
+        hora = datetime.strptime(horaDato, "%H:%M")
+        fecha_hora = datetime.combine(fecha.date(), hora.time())
+        fecha_hora = timezone.make_aware(fecha_hora, timezone=timezone.get_current_timezone())
+
+        data = np.array([[int(claseSinisestroDato), 
+                          int(choqueDato), 
+                          int(codigoLocalidadDato), 
+                          int(disenoLugarDato), 
+                          int(condicionDato), 
+                          int(estadoDato), 
+                          int(edadDato), 
+                          int(sexoDato), 
+                          int(claseVehiculoDato), 
+                          int(servicioDato), 
+                          int(enfugaDato), 
+                          int(codigoCausaDato)]])
+        pred =  rf_model.predict(data)
+
+        pred = int(pred)
+
+        return render(request, 'Random-Forest-ClassifierGravedad.html', {'claseSiniestros': claseSinisestro,
+                                                                    'choques': choque,
+                                                                    'codigoLocalidades': codigoLocalidad,
+                                                                    'disenoLugares': disenoLugar,
+                                                                    'condiciones': condicion,
+                                                                    'estados': estado,
+                                                                    'sexos': sexo,
+                                                                    'claseVehiculos': claseVehiculo,
+                                                                    'servicios': servicio,
+                                                                    'enfugas': enfuga,
+                                                                    'codigoCausas': codigoCausa,
+                                                                    'prediccion': pred})
+    else:
+        siniestro = Siniestro.objects.all()
+        return render(request, 'Random-Forest-ClassifierGravedad.html', {'claseSiniestros': claseSinisestro,
                                                                     'choques': choque,
                                                                     'codigoLocalidades': codigoLocalidad,
                                                                     'disenoLugares': disenoLugar,
@@ -470,12 +658,201 @@ def KNearestNeighborsClaseSiniestro(request):
                                                                     'codigoCausas': codigoCausa})
 
 @login_required
-def KNearestNeighborsEstado(request):
-    return render(request, 'K-NearestNeighborsEstado.html',{'gravedades': gravedad,
+def RandomForestClassifierClaseSiniestro(request):
+
+    rf_model = joblib.load(r'analiticaSiniestros\static\Modelos Clasificacion\rf_model_CLASE_SINIESTRO.pkl')
+
+    if request.method == 'POST':
+
+        gravedadDato = request.POST.get('gravedadDato')
+        choqueDato = request.POST.get('choqueDato')
+        codigoLocalidadDato = request.POST.get('codigoLocalidadDato')
+        disenoLugarDato = request.POST.get('disenoLugarDato')
+        condicionDato = request.POST.get('condicionDato')
+        estadoDato = request.POST.get('estadoDato')
+        edadDato = request.POST.get('edadDato')
+        sexoDato = request.POST.get('sexoDato')
+        claseVehiculoDato = request.POST.get('claseVehiculoDato')
+        servicioDato = request.POST.get('servicioDato')
+        enfugaDato = request.POST.get('enfugaDato')
+        codigoCausaDato = request.POST.get('codigoCausaDato')
+        fechaDato = request.POST.get('fechaDato')
+        horaDato = request.POST.get('horaDato')
+        fecha = datetime.strptime(fechaDato, "%Y-%m-%d")
+        hora = datetime.strptime(horaDato, "%H:%M")
+        fecha_hora = datetime.combine(fecha.date(), hora.time())
+        fecha_hora = timezone.make_aware(fecha_hora, timezone=timezone.get_current_timezone())
+
+        data = np.array([[int(gravedadDato), 
+                          int(choqueDato), 
+                          int(codigoLocalidadDato), 
+                          int(disenoLugarDato), 
+                          int(condicionDato), 
+                          int(estadoDato), 
+                          int(edadDato), 
+                          int(sexoDato), 
+                          int(claseVehiculoDato), 
+                          int(servicioDato), 
+                          int(enfugaDato), 
+                          int(codigoCausaDato)]])
+        pred =  rf_model.predict(data)
+
+        pred = int(pred)
+        return render(request, 'Random-Forest-ClassifierClaseSiniestro.html',{'gravedades': gravedad,
+                                                                        'choques': choque,
+                                                                        'codigoLocalidades': codigoLocalidad,
+                                                                        'disenoLugares': disenoLugar,
+                                                                        'condiciones': condicion,
+                                                                        'estados': estado,
+                                                                        'sexos': sexo,
+                                                                        'claseVehiculos': claseVehiculo,
+                                                                        'servicios': servicio,
+                                                                        'enfugas': enfuga,
+                                                                        'codigoCausas': codigoCausa,
+                                                                        'prediccion': pred})
+    else:
+        return render(request, 'Random-Forest-ClassifierClaseSiniestro.html',{'gravedades': gravedad,
+                                                                        'choques': choque,
+                                                                        'codigoLocalidades': codigoLocalidad,
+                                                                        'disenoLugares': disenoLugar,
+                                                                        'condiciones': condicion,
+                                                                        'estados': estado,
+                                                                        'sexos': sexo,
+                                                                        'claseVehiculos': claseVehiculo,
+                                                                        'servicios': servicio,
+                                                                        'enfugas': enfuga,
+                                                                        'codigoCausas': codigoCausa})
+
+@login_required
+def RandomForestClassifierEstado(request):
+
+    rf_model = joblib.load(r'analiticaSiniestros\static\Modelos Clasificacion\rf_model_ESTADO.pkl')
+
+    if request.method == 'POST':
+
+        gravedadDato = request.POST.get('gravedadDato')
+        claseSinisestroDato = request.POST.get('claseSinisestroDato')
+        choqueDato = request.POST.get('choqueDato')
+        codigoLocalidadDato = request.POST.get('codigoLocalidadDato')
+        disenoLugarDato = request.POST.get('disenoLugarDato')
+        condicionDato = request.POST.get('condicionDato')
+        edadDato = request.POST.get('edadDato')
+        sexoDato = request.POST.get('sexoDato')
+        claseVehiculoDato = request.POST.get('claseVehiculoDato')
+        servicioDato = request.POST.get('servicioDato')
+        enfugaDato = request.POST.get('enfugaDato')
+        codigoCausaDato = request.POST.get('codigoCausaDato')
+        fechaDato = request.POST.get('fechaDato')
+        horaDato = request.POST.get('horaDato')
+        fecha = datetime.strptime(fechaDato, "%Y-%m-%d")
+        hora = datetime.strptime(horaDato, "%H:%M")
+        fecha_hora = datetime.combine(fecha.date(), hora.time())
+        fecha_hora = timezone.make_aware(fecha_hora, timezone=timezone.get_current_timezone())
+
+        data = np.array([[int(gravedadDato),
+                          int(claseSinisestroDato), 
+                          int(choqueDato), 
+                          int(codigoLocalidadDato), 
+                          int(disenoLugarDato), 
+                          int(condicionDato), 
+                          int(edadDato), 
+                          int(sexoDato), 
+                          int(claseVehiculoDato), 
+                          int(servicioDato), 
+                          int(enfugaDato), 
+                          int(codigoCausaDato)]])
+        pred =  rf_model.predict(data)
+
+        pred = int(pred)
+
+        return render(request, 'Random-Forest-ClassifierEstado.html',{'gravedades': gravedad,
+                                                                'claseSiniestros': claseSinisestro,
+                                                                'choques': choque,
+                                                                'codigoLocalidades': codigoLocalidad,
+                                                                'disenoLugares': disenoLugar,
+                                                                'condiciones': condicion,
+                                                                'sexos': sexo,
+                                                                'claseVehiculos': claseVehiculo,
+                                                                'servicios': servicio,
+                                                                'enfugas': enfuga,
+                                                                'codigoCausas': codigoCausa,
+                                                                'codigoCausas': codigoCausa,
+                                                                'prediccion': pred})
+    else:
+        return render(request, 'Random-Forest-ClassifierEstado.html',{'gravedades': gravedad,
+                                                                'claseSiniestros': claseSinisestro,
+                                                                'choques': choque,
+                                                                'codigoLocalidades': codigoLocalidad,
+                                                                'disenoLugares': disenoLugar,
+                                                                'condiciones': condicion,
+                                                                'sexos': sexo,
+                                                                'claseVehiculos': claseVehiculo,
+                                                                'servicios': servicio,
+                                                                'enfugas': enfuga,
+                                                                'codigoCausas': codigoCausa})
+
+@login_required
+def LogisticRegressionGravedad(request):
+
+    lg_model = joblib.load(r'analiticaSiniestros\static\Modelos Clasificacion\lg_model_GRAVEDAD.pkl')
+
+    if request.method == 'POST':
+
+        claseSinisestroDato = request.POST.get('claseSinisestroDato')
+        choqueDato = request.POST.get('choqueDato')
+        codigoLocalidadDato = request.POST.get('codigoLocalidadDato')
+        disenoLugarDato = request.POST.get('disenoLugarDato')
+        condicionDato = request.POST.get('condicionDato')
+        estadoDato = request.POST.get('estadoDato')
+        edadDato = request.POST.get('edadDato')
+        sexoDato = request.POST.get('sexoDato')
+        claseVehiculoDato = request.POST.get('claseVehiculoDato')
+        servicioDato = request.POST.get('servicioDato')
+        enfugaDato = request.POST.get('enfugaDato')
+        codigoCausaDato = request.POST.get('codigoCausaDato')
+        fechaDato = request.POST.get('fechaDato')
+        horaDato = request.POST.get('horaDato')
+        fecha = datetime.strptime(fechaDato, "%Y-%m-%d")
+        hora = datetime.strptime(horaDato, "%H:%M")
+        fecha_hora = datetime.combine(fecha.date(), hora.time())
+        fecha_hora = timezone.make_aware(fecha_hora, timezone=timezone.get_current_timezone())
+
+        data = np.array([[int(claseSinisestroDato), 
+                          int(choqueDato), 
+                          int(codigoLocalidadDato), 
+                          int(disenoLugarDato), 
+                          int(condicionDato), 
+                          int(estadoDato), 
+                          int(edadDato), 
+                          int(sexoDato), 
+                          int(claseVehiculoDato), 
+                          int(servicioDato), 
+                          int(enfugaDato), 
+                          int(codigoCausaDato)]])
+        pred =  lg_model.predict(data)
+
+        pred = int(pred)
+
+        return render(request, 'Logistic-RegressionGravedad.html', {'claseSiniestros': claseSinisestro,
                                                                     'choques': choque,
                                                                     'codigoLocalidades': codigoLocalidad,
                                                                     'disenoLugares': disenoLugar,
                                                                     'condiciones': condicion,
+                                                                    'estados': estado,
+                                                                    'sexos': sexo,
+                                                                    'claseVehiculos': claseVehiculo,
+                                                                    'servicios': servicio,
+                                                                    'enfugas': enfuga,
+                                                                    'codigoCausas': codigoCausa,
+                                                                    'prediccion': pred})
+    else:
+        siniestro = Siniestro.objects.all()
+        return render(request, 'Logistic-RegressionGravedad.html', {'claseSiniestros': claseSinisestro,
+                                                                    'choques': choque,
+                                                                    'codigoLocalidades': codigoLocalidad,
+                                                                    'disenoLugares': disenoLugar,
+                                                                    'condiciones': condicion,
+                                                                    'estados': estado,
                                                                     'sexos': sexo,
                                                                     'claseVehiculos': claseVehiculo,
                                                                     'servicios': servicio,
@@ -483,25 +860,133 @@ def KNearestNeighborsEstado(request):
                                                                     'codigoCausas': codigoCausa})
 
 @login_required
-def RandomForestClassifierGravedad(request):
-    return render(request, 'Random-Forest-ClassifierGravedad.html')
-
-@login_required
-def RandomForestClassifierClaseSiniestro(request):
-    return render(request, 'Random-Forest-ClassifierClaseSiniestro.html')
-
-@login_required
-def RandomForestClassifierEstado(request):
-    return render(request, 'Random-Forest-ClassifierEstado.html')
-
-@login_required
-def LogisticRegressionGravedad(request):
-    return render(request, 'Logistic-RegressionGravedad.html')
-
-@login_required
 def LogisticRegressionClaseSiniestro(request):
-    return render(request, 'Logistic-RegressionClaseSiniestro.html')
+
+    lg_model = joblib.load(r'analiticaSiniestros\static\Modelos Clasificacion\lg_model_CLASE_SINIESTRO.pkl')
+
+    if request.method == 'POST':
+
+        gravedadDato = request.POST.get('gravedadDato')
+        choqueDato = request.POST.get('choqueDato')
+        codigoLocalidadDato = request.POST.get('codigoLocalidadDato')
+        disenoLugarDato = request.POST.get('disenoLugarDato')
+        condicionDato = request.POST.get('condicionDato')
+        estadoDato = request.POST.get('estadoDato')
+        edadDato = request.POST.get('edadDato')
+        sexoDato = request.POST.get('sexoDato')
+        claseVehiculoDato = request.POST.get('claseVehiculoDato')
+        servicioDato = request.POST.get('servicioDato')
+        enfugaDato = request.POST.get('enfugaDato')
+        codigoCausaDato = request.POST.get('codigoCausaDato')
+        fechaDato = request.POST.get('fechaDato')
+        horaDato = request.POST.get('horaDato')
+        fecha = datetime.strptime(fechaDato, "%Y-%m-%d")
+        hora = datetime.strptime(horaDato, "%H:%M")
+        fecha_hora = datetime.combine(fecha.date(), hora.time())
+        fecha_hora = timezone.make_aware(fecha_hora, timezone=timezone.get_current_timezone())
+
+        data = np.array([[int(gravedadDato), 
+                          int(choqueDato), 
+                          int(codigoLocalidadDato), 
+                          int(disenoLugarDato), 
+                          int(condicionDato), 
+                          int(estadoDato), 
+                          int(edadDato), 
+                          int(sexoDato), 
+                          int(claseVehiculoDato), 
+                          int(servicioDato), 
+                          int(enfugaDato), 
+                          int(codigoCausaDato)]])
+        pred =  lg_model.predict(data)
+
+        pred = int(pred)
+        return render(request, 'Logistic-RegressionClaseSiniestro.html',{'gravedades': gravedad,
+                                                                        'choques': choque,
+                                                                        'codigoLocalidades': codigoLocalidad,
+                                                                        'disenoLugares': disenoLugar,
+                                                                        'condiciones': condicion,
+                                                                        'estados': estado,
+                                                                        'sexos': sexo,
+                                                                        'claseVehiculos': claseVehiculo,
+                                                                        'servicios': servicio,
+                                                                        'enfugas': enfuga,
+                                                                        'codigoCausas': codigoCausa,
+                                                                        'prediccion': pred})
+    else:
+        return render(request, 'Logistic-RegressionClaseSiniestro.html',{'gravedades': gravedad,
+                                                                        'choques': choque,
+                                                                        'codigoLocalidades': codigoLocalidad,
+                                                                        'disenoLugares': disenoLugar,
+                                                                        'condiciones': condicion,
+                                                                        'estados': estado,
+                                                                        'sexos': sexo,
+                                                                        'claseVehiculos': claseVehiculo,
+                                                                        'servicios': servicio,
+                                                                        'enfugas': enfuga,
+                                                                        'codigoCausas': codigoCausa})
 
 @login_required
 def LogisticRegressionEstado(request):
-    return render(request, 'Logistic-RegressionEstado.html')
+    lf_model = joblib.load(r'analiticaSiniestros\static\Modelos Clasificacion\lf_model_ESTADO.pkl')
+
+    if request.method == 'POST':
+
+        gravedadDato = request.POST.get('gravedadDato')
+        claseSinisestroDato = request.POST.get('claseSinisestroDato')
+        choqueDato = request.POST.get('choqueDato')
+        codigoLocalidadDato = request.POST.get('codigoLocalidadDato')
+        disenoLugarDato = request.POST.get('disenoLugarDato')
+        condicionDato = request.POST.get('condicionDato')
+        edadDato = request.POST.get('edadDato')
+        sexoDato = request.POST.get('sexoDato')
+        claseVehiculoDato = request.POST.get('claseVehiculoDato')
+        servicioDato = request.POST.get('servicioDato')
+        enfugaDato = request.POST.get('enfugaDato')
+        codigoCausaDato = request.POST.get('codigoCausaDato')
+        fechaDato = request.POST.get('fechaDato')
+        horaDato = request.POST.get('horaDato')
+        fecha = datetime.strptime(fechaDato, "%Y-%m-%d")
+        hora = datetime.strptime(horaDato, "%H:%M")
+        fecha_hora = datetime.combine(fecha.date(), hora.time())
+        fecha_hora = timezone.make_aware(fecha_hora, timezone=timezone.get_current_timezone())
+
+        data = np.array([[int(gravedadDato),
+                          int(claseSinisestroDato), 
+                          int(choqueDato), 
+                          int(codigoLocalidadDato), 
+                          int(disenoLugarDato), 
+                          int(condicionDato), 
+                          int(edadDato), 
+                          int(sexoDato), 
+                          int(claseVehiculoDato), 
+                          int(servicioDato), 
+                          int(enfugaDato), 
+                          int(codigoCausaDato)]])
+        pred =  lf_model.predict(data)
+
+        pred = int(pred)
+
+        return render(request, 'Logistic-RegressionEstado.html',{'gravedades': gravedad,
+                                                                'claseSiniestros': claseSinisestro,
+                                                                'choques': choque,
+                                                                'codigoLocalidades': codigoLocalidad,
+                                                                'disenoLugares': disenoLugar,
+                                                                'condiciones': condicion,
+                                                                'sexos': sexo,
+                                                                'claseVehiculos': claseVehiculo,
+                                                                'servicios': servicio,
+                                                                'enfugas': enfuga,
+                                                                'codigoCausas': codigoCausa,
+                                                                'prediccion': pred})
+    else:
+        return render(request, 'K-NearestNeighborsEstado.html',{'gravedades': gravedad,
+                                                                'claseSiniestros': claseSinisestro,
+                                                                'choques': choque,
+                                                                'codigoLocalidades': codigoLocalidad,
+                                                                'disenoLugares': disenoLugar,
+                                                                'condiciones': condicion,
+                                                                'sexos': sexo,
+                                                                'claseVehiculos': claseVehiculo,
+                                                                'servicios': servicio,
+                                                                'enfugas': enfuga,
+                                                                'codigoCausas': codigoCausa})
