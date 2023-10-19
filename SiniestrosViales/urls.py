@@ -21,3 +21,5 @@ urlpatterns = [
     path("", include("login.urls")),
     path("index/", include("analiticaSiniestros.urls"))    
 ]
+
+handler404 = 'login.views.handling_404'

@@ -86,3 +86,6 @@ def createProject(request):
     else:
         project = Project.objects.create(name=request.POST['name'])
         return redirect('projects')
+    
+def handling_404(request, exception):
+    return render(request, 'error-404.html', {})
